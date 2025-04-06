@@ -4,6 +4,7 @@ import Dashboard from "./screens/Dashboard";
 import SleepTracking from "./screens/SleepTracking";
 import FittnessNutrition from "./screens/FittnessNutrition";
 import Settings from "./screens/Setting";
+import DailyHabit from "./screens/DailyHabit";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -46,9 +47,7 @@ function App() {
         <Route path="/sleep-tracking" element={<SleepTracking />} />
         <Route path="/fittness-nutrition" element={<FittnessNutrition />} />
         <Route path="/settings" element={<Settings />} />
-        {/* <Route path="/" element={<Splash />} />
-        <Route path="/" element={<Splash />} />
-        <Route path="/" element={<Splash />} /> */}
+        <Route path="/daily-habit" element={<DailyHabit />} />
       </Routes>
     </Router>
   );
