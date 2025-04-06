@@ -1,19 +1,26 @@
 import { useEffect, useState } from "react";
-import Splash from "./screens/Splash";
-import Settings from "./screens/Setting";
+import SplashScreen from "./screens/Splash";
+import Dashboard from "./screens/Dashboard";
+// import Settings from "./screens/Setting";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
-  const [count, setCount] = useState(0);
   const [isMobile, setIsMobile] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const check = () => {
       setIsMobile(window.innerWidth <= 480);
     };
     check();
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
     window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("resize", check);
+    };
   }, []);
 
   if (!isMobile) {
@@ -26,12 +33,17 @@ function App() {
       </div>
     );
   }
+  if (loading) {
+    return <SplashScreen />;
+  }
 
   return (
     <Router>
       <Routes>
+        <Route path="/" element={<Dashboard />} />
+        {/* <Route path="/" element={<Splash />} />
         <Route path="/" element={<Splash />} />
-        {/* Define other routes for additional screens */}
+        <Route path="/" element={<Splash />} /> */}
       </Routes>
     </Router>
   );
