@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import SplashScreen from "./screens/Splash";
 import Dashboard from "./screens/Dashboard";
 import SleepTracking from "./screens/SleepTracking";
-// import Settings from "./screens/Setting";
+import FittnessNutrition from "./screens/FittnessNutrition";
+import Settings from "./screens/Setting";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -43,6 +44,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/sleep-tracking" element={<SleepTracking />} />
+        <Route path="/fittness-nutrition" element={<FittnessNutrition />} />
+        <Route path="/settings" element={<Settings />} />
         {/* <Route path="/" element={<Splash />} />
         <Route path="/" element={<Splash />} />
         <Route path="/" element={<Splash />} /> */}
