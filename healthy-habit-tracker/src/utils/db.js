@@ -8,5 +8,6 @@ export const db = new Dexie("HabitTrackerDB");
 // A date mező alapján tudunk naponként szűrni
 
 db.version(1).stores({
-  habits: "id, date, name, completed", // id: kulcs, date: index a napi szűréshez
+  habits: "id, date, name, completed",
+  sleep: "id, date, start, end",
 });

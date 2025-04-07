@@ -1,26 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
+import { Link } from "react-router-dom";
+import useSleepTracker from "../hooks/useSleepTracker";
 
 function SleepTracking() {
-  const [tracking, setTracking] = useState(false);
-  const [startTime, setStartTime] = useState(null);
-
-  const handleToggle = () => {
-    if (tracking) {
-      setTracking(false);
-      setStartTime(null);
-      // Add logic to stop sleep tracking and process audio data
-    } else {
-      setTracking(true);
-      setStartTime(new Date());
-      // Add logic to start sleep tracking (e.g., accessing microphone)
-    }
-  };
+  const { tracking, startTime, handleToggle } = useSleepTracker();
 
   return (
     <div className="bg-[#141919] min-h-screen text-gray-100 flex flex-col">
       {/* Header */}
       <header className="p-4 flex items-center justify-between bg-[#232828] shadow-md">
         <h1 className="text-[#f88415] text-2xl font-bold">Sleep Tracking</h1>
+        <Link to="/sleep-history" className="text-sm text-[#f88415]">
+          History
+        </Link>
       </header>
       {/* Main Content */}
       <main className="p-4 flex-1 flex items-center justify-center">
@@ -48,6 +40,9 @@ function SleepTracking() {
           </button>
         </div>
       </main>
+      <Link to="/" className="text-[#f88415] text-sm p-4">
+        Back to Dashboard
+      </Link>
     </div>
   );
 }
