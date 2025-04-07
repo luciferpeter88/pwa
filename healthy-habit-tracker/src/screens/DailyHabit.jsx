@@ -38,11 +38,14 @@ function HabitTracker() {
         <h1 className="text-[#f88415] text-lg font-bold">
           Daily Habit Tracker
         </h1>
+        <Link to="/history" className="text-[#f88415] text-sm">
+          History
+        </Link>
       </header>
 
       {/* Main Content */}
       <main className="p-4 flex-1 overflow-y-auto">
-        <h2 className="text-[#f88415] text-lg font-semibold mb-4">
+        <h2 className="text-[#f88415] text-md font-semibold mb-4">
           Today's Habits
         </h2>
         {loading ? (
@@ -70,7 +73,7 @@ function HabitTracker() {
                     />
                   ) : (
                     <span
-                      className={`text-md ${
+                      className={`text-sm ${
                         habit.completed
                           ? "line-through text-gray-400"
                           : "text-gray-100"
@@ -80,7 +83,7 @@ function HabitTracker() {
                     </span>
                   )}
                 </div>
-                <div className="flex space-x-2">
+                <div className="flex space-x-2 text-sm">
                   {editingId === habit.id ? (
                     <button
                       onClick={() => handleEdit(habit.id)}
@@ -130,8 +133,8 @@ function HabitTracker() {
           </div>
         </div>
       </main>
-      <Link to="/history" className="text-[#f88415] underline text-sm">
-        View Habit History with Charts
+      <Link to="/" className="text-[#f88415] text-sm p-4">
+        Back to Dashboard
       </Link>
     </div>
   );
