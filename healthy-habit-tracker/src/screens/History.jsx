@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { db } from "../utils/db";
 import { Pie } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Link } from "react-router-dom";
+import fetchHabitsFromDB from "../utils/fetchAllHabit";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -12,16 +12,8 @@ function History() {
 
   useEffect(() => {
     async function fetchHabits() {
-      // Fetch all habits from the database
-      const all = await db.habits.toArray();
-      const byDate = {};
-      // loop through all habits and group them by date
-      for (const habit of all) {
-        // if the date is not in the byDate object, create an empty array
-        if (!byDate[habit.date]) byDate[habit.date] = [];
-        // else push the habit into the array
-        byDate[habit.date].push(habit);
-      }
+      // fetch all habits from the databas
+      const byDate = await fetchHabitsFromDB();
       // update the sates with the grouped habits
       setGrouped(byDate);
       setLoading(false);
