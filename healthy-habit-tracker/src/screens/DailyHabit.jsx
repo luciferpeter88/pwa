@@ -1,32 +1,19 @@
 import React, { useState } from "react";
+import useHabitsByDate from "../hooks/useHabitsByDate";
+import { Link } from "react-router-dom";
 
-const HabitTracker = () => {
-  const [habits, setHabits] = useState([
-    { id: 1, name: "Drink Water", completed: false },
-    { id: 2, name: "Sleep by 10PM", completed: true },
-    { id: 3, name: "Exercise", completed: false },
-  ]);
+function HabitTracker() {
+  const today = new Date().toISOString().split("T")[0];
+  const { habits, loading, addHabit, toggleHabit, editHabit, deleteHabit } =
+    useHabitsByDate(today);
+
   const [newHabit, setNewHabit] = useState("");
   const [editingId, setEditingId] = useState(null);
   const [editingText, setEditingText] = useState("");
-
-  const handleToggle = (id) => {
-    setHabits(
-      habits.map((habit) =>
-        habit.id === id ? { ...habit, completed: !habit.completed } : habit
-      )
-    );
-  };
-
-  const handleDelete = (id) => {
-    setHabits(habits.filter((habit) => habit.id !== id));
-  };
-
+  // add new habot and save it in the localStorage
   const handleAdd = () => {
-    if (newHabit.trim() !== "") {
-      const id =
-        habits.length > 0 ? Math.max(...habits.map((h) => h.id)) + 1 : 1;
-      setHabits([...habits, { id, name: newHabit, completed: false }]);
+    if (newHabit.trim()) {
+      addHabit(newHabit.trim());
       setNewHabit("");
     }
   };
@@ -37,88 +24,93 @@ const HabitTracker = () => {
   };
 
   const handleEdit = (id) => {
-    setHabits(
-      habits.map((habit) =>
-        habit.id === id ? { ...habit, name: editingText } : habit
-      )
-    );
-    setEditingId(null);
-    setEditingText("");
+    if (editingText.trim()) {
+      editHabit(id, editingText.trim());
+      setEditingId(null);
+      setEditingText("");
+    }
   };
 
   return (
     <div className="bg-[#141919] min-h-screen text-gray-100 flex flex-col">
       {/* Header */}
       <header className="p-4 flex items-center justify-between bg-[#232828] shadow-md">
-        <h1 className="text-[#f88415] text-2xl font-bold">
+        <h1 className="text-[#f88415] text-lg font-bold">
           Daily Habit Tracker
         </h1>
       </header>
 
       {/* Main Content */}
       <main className="p-4 flex-1 overflow-y-auto">
-        <div className="space-y-4">
-          {habits.map((habit) => (
-            <div
-              key={habit.id}
-              className="flex items-center justify-between bg-[#232828] rounded-md p-4 shadow-md"
-            >
-              <div className="flex items-center">
-                <input
-                  type="checkbox"
-                  checked={habit.completed}
-                  onChange={() => handleToggle(habit.id)}
-                  className="form-checkbox h-5 w-5 text-[#f88415] mr-3"
-                />
-                {editingId === habit.id ? (
+        <h2 className="text-[#f88415] text-lg font-semibold mb-4">
+          Today's Habits
+        </h2>
+        {loading ? (
+          <p className="text-gray-400">Loading...</p>
+        ) : (
+          <div className="space-y-4">
+            {habits.map((habit) => (
+              <div
+                key={habit.id}
+                className="flex items-center justify-between bg-[#232828] rounded-md p-4 shadow-md"
+              >
+                <div className="flex items-center">
                   <input
-                    type="text"
-                    value={editingText}
-                    onChange={(e) => setEditingText(e.target.value)}
-                    className="p-1 rounded-md bg-[#141919] text-gray-100 border border-gray-600 focus:outline-none"
+                    type="checkbox"
+                    checked={habit.completed}
+                    onChange={() => toggleHabit(habit.id)}
+                    className="form-checkbox h-5 w-5 text-[#f88415] mr-3"
                   />
-                ) : (
-                  <span
-                    className={`text-lg ${
-                      habit.completed
-                        ? "line-through text-gray-400"
-                        : "text-gray-100"
-                    }`}
-                  >
-                    {habit.name}
-                  </span>
-                )}
-              </div>
-              <div className="flex space-x-2">
-                {editingId === habit.id ? (
+                  {editingId === habit.id ? (
+                    <input
+                      type="text"
+                      value={editingText}
+                      onChange={(e) => setEditingText(e.target.value)}
+                      className="p-1 rounded-md bg-[#141919] text-gray-100 border border-gray-600 focus:outline-none"
+                    />
+                  ) : (
+                    <span
+                      className={`text-md ${
+                        habit.completed
+                          ? "line-through text-gray-400"
+                          : "text-gray-100"
+                      }`}
+                    >
+                      {habit.name}
+                    </span>
+                  )}
+                </div>
+                <div className="flex space-x-2">
+                  {editingId === habit.id ? (
+                    <button
+                      onClick={() => handleEdit(habit.id)}
+                      className="text-[#f88415] hover:text-white transition"
+                    >
+                      Save
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => startEditing(habit.id, habit.name)}
+                      className="text-[#f88415] hover:text-white transition"
+                    >
+                      Edit
+                    </button>
+                  )}
                   <button
-                    onClick={() => handleEdit(habit.id)}
+                    onClick={() => deleteHabit(habit.id)}
                     className="text-[#f88415] hover:text-white transition"
                   >
-                    Save
+                    Delete
                   </button>
-                ) : (
-                  <button
-                    onClick={() => startEditing(habit.id, habit.name)}
-                    className="text-[#f88415] hover:text-white transition"
-                  >
-                    Edit
-                  </button>
-                )}
-                <button
-                  onClick={() => handleDelete(habit.id)}
-                  className="text-[#f88415] hover:text-white transition"
-                >
-                  Delete
-                </button>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
 
         {/* Add Habit Section */}
         <div className="mt-6 bg-[#232828] rounded-md p-4 shadow-md">
-          <h2 className="text-[#f88415] text-xl font-semibold mb-2">
+          <h2 className="text-[#f88415] text-lg font-semibold mb-2">
             Add a New Habit
           </h2>
           <div className="flex">
@@ -138,8 +130,11 @@ const HabitTracker = () => {
           </div>
         </div>
       </main>
+      <Link to="/history" className="text-[#f88415] underline text-sm">
+        View Habit History with Charts
+      </Link>
     </div>
   );
-};
+}
 
 export default HabitTracker;

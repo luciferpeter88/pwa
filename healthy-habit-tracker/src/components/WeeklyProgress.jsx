@@ -11,7 +11,7 @@ const habitGoals = {
   calories: {
     label: "Calories",
     goal: 1800,
-    data: [1500, 2000, 1750, 1800, 1600, 1900, 1700],
+    data: [1500, 2000, 1750, 2800, 1600, 1900, 1700],
     unit: "kcal",
   },
   sleep: {
@@ -87,7 +87,7 @@ function GoalProgressChart() {
   return (
     <div className="bg-[#232828] m-4 p-2 rounded-md shadow-md text-gray-100">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-[#f88415] text-md font-semibold">
+        <h2 className="text-[#f88415] text-sm font-semibold">
           {habitGoals[selectedHabit].label} Progress (Goal:{" "}
           {habitGoals[selectedHabit].goal} {habitGoals[selectedHabit].unit})
         </h2>

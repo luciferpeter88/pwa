@@ -5,6 +5,7 @@ import SleepTracking from "./screens/SleepTracking";
 import FittnessNutrition from "./screens/FittnessNutrition";
 import Settings from "./screens/Setting";
 import DailyHabit from "./screens/DailyHabit";
+import History from "./screens/History";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
         <Route path="/fittness-nutrition" element={<FittnessNutrition />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/daily-habit" element={<DailyHabit />} />
+        <Route path="/history" element={<History />} />
       </Routes>
     </Router>
   );
