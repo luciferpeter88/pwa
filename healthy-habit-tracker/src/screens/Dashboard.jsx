@@ -1,4 +1,7 @@
 import React from "react";
+import WeeklyProgress from "../components/WeeklyProgress";
+import DashboardCard from "../components/DashboardCard";
+import Widget from "../components/Widget";
 
 const Dashboard = () => {
   return (
@@ -11,46 +14,60 @@ const Dashboard = () => {
           Menu
         </button>
       </header>
+      <WeeklyProgress />
 
       {/* Main Content */}
       <main className="p-4 flex-1 overflow-y-auto">
         <div className="space-y-6">
           {/* Daily Habits Card */}
-          <section className="bg-[#232828] rounded-md p-4 shadow-md">
-            <h2 className="text-[#f88415] text-xl font-semibold">
-              Daily Habits
-            </h2>
-            <p className="text-sm text-gray-300 mt-1">
-              2/5 habits completed today
-            </p>
-            <button className="mt-4 bg-[#f88415] text-[#141919] px-4 py-2 rounded-md font-medium hover:opacity-90 transition">
-              Go to Habits
-            </button>
-          </section>
+          <DashboardCard
+            title="Daily Habits"
+            to="/daily-habit"
+            buttonText="Details"
+          >
+            <Widget
+              strokeDashoffset={176 * (1 - 0.4)}
+              precent="40%"
+              text="2 of 5 habits completed today"
+            />
+          </DashboardCard>
 
           {/* Sleep Tracking Card */}
-          <section className="bg-[#232828] rounded-md p-4 shadow-md">
-            <h2 className="text-[#f88415] text-xl font-semibold">
-              Sleep Summary
-            </h2>
-            <p className="text-sm text-gray-300 mt-1">7h 20m last night</p>
-            <button className="mt-4 bg-[#f88415] text-[#141919] px-4 py-2 rounded-md font-medium hover:opacity-90 transition">
-              Track Sleep
-            </button>
-          </section>
+
+          <DashboardCard
+            title="Sleep Summary"
+            to="/sleep-tracking"
+            buttonText="Details"
+          >
+            <Widget
+              strokeDashoffset={176 * (1 - 0.92)}
+              precent="92%"
+              text={
+                <div>
+                  <p>Slept: 7h 20m</p>
+                  <p>Goal: 8h</p>
+                </div>
+              }
+            />
+          </DashboardCard>
 
           {/* Fitness & Nutrition Card */}
-          <section className="bg-[#232828] rounded-md p-4 shadow-md">
-            <h2 className="text-[#f88415] text-xl font-semibold">
-              Fitness & Nutrition
-            </h2>
-            <p className="text-sm text-gray-300 mt-1">
-              Calories: 1,200 | Steps: 5,000
-            </p>
-            <button className="mt-4 bg-[#f88415] text-[#141919] px-4 py-2 rounded-md font-medium hover:opacity-90 transition">
-              View Details
-            </button>
-          </section>
+          <DashboardCard
+            title="Fitness & Nutrition"
+            to="/fittness-nutrition"
+            buttonText="Details"
+          >
+            <Widget
+              strokeDashoffset={176 * (1 - 0.66)}
+              precent="66%"
+              text={
+                <div>
+                  <p> Calories: 1200 / 1800</p>
+                  <p>Steps: 5000 / 8000</p>
+                </div>
+              }
+            />
+          </DashboardCard>
         </div>
       </main>
     </div>
