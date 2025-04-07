@@ -1,9 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import WeeklyProgress from "../components/WeeklyProgress";
 import DashboardCard from "../components/DashboardCard";
 import Widget from "../components/Widget";
+import fetchHabitsFromDB from "../utils/fetchAllHabit";
 
 const Dashboard = () => {
+  const [loading, setLoading] = useState(true);
+  const [habits, setHabits] = useState({});
+  useEffect(() => {
+    async function fetchHabits() {
+      // fetch all habits from the database
+      const all = await fetchHabitsFromDB();
+      // get format of "2025-04-07", return today's date
+      const today = new Date().toISOString().split("T")[0];
+      // updarteve the state with the habits for today
+      setHabits(all[today]);
+      setLoading(false);
+    }
+    fetchHabits();
+  }, []);
+  console.log(habits);
+  const completedCount = loading
+    ? null
+    : habits.filter((h) => h.completed).length;
+  const progress = (completedCount / habits.length) * 100;
+  const strokeDashoffset = 176 * (1 - progress / 100);
+  const percent = `${progress.toFixed(0)}%`;
+  const text = `${completedCount} of ${habits.length} habits completed today`;
+
+  console.log(habits);
+
   return (
     <div className="bg-[#141919] min-h-screen text-gray-100 flex flex-col">
       {/* Header / Top Bar */}
@@ -22,9 +48,9 @@ const Dashboard = () => {
             buttonText="Details"
           >
             <Widget
-              strokeDashoffset={176 * (1 - 0.4)}
-              precent="40%"
-              text="2 of 5 habits completed today"
+              strokeDashoffset={loading ? null : strokeDashoffset}
+              precent={percent}
+              text={text}
             />
           </DashboardCard>
 
