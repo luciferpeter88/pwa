@@ -19,11 +19,13 @@ const Dashboard = () => {
     }
     fetchHabits();
   }, []);
-  console.log(habits);
+  // if the habits are not loaded yet, do not show the progress
   const completedCount = loading
     ? null
     : habits.filter((h) => h.completed).length;
+  // count the number of habits
   const progress = (completedCount / habits.length) * 100;
+  // calculate the strokeDashoffset for the circle
   const strokeDashoffset = 176 * (1 - progress / 100);
   const percent = `${progress.toFixed(0)}%`;
   const text = `${completedCount} of ${habits.length} habits completed today`;
