@@ -1,24 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { Link } from "react-router-dom";
+import Widget from "../components/Widget"; // feltételezzük, hogy a Widget komponens már létezik
 
 function FitnessNutrition() {
-  const [steps, setSteps] = useState(0);
-  const [calories, setCalories] = useState(0);
-  const [maintenanceCalories, setMaintenanceCalories] = useState(2000); // Sample value
-
-  // Simulate step count update (replace with actual pedometer API logic)
-  useEffect(() => {
-    const interval = setInterval(() => {
-      //   setSteps((prev) => prev + Math.floor(Math.random() * 10));
-    }, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
-  // Simulate barcode scanning to add calories (replace with actual barcode scanning logic)
-  const handleScanBarcode = () => {
-    const scannedCalories = Math.floor(Math.random() * 100) + 50;
-    setCalories((prev) => prev + scannedCalories);
-  };
-
   return (
     <div className="bg-[#141919] min-h-screen text-gray-100 flex flex-col">
       {/* Header */}
@@ -31,32 +15,61 @@ function FitnessNutrition() {
       {/* Main Content */}
       <main className="p-4 flex-1 overflow-y-auto">
         <div className="space-y-6">
-          {/* Step Count Card */}
+          {/* Steps Widget */}
           <section className="bg-[#232828] rounded-md p-4 shadow-md">
-            <h2 className="text-[#f88415] text-xl font-semibold">Step Count</h2>
-            <p className="text-lg mt-2">{steps} steps</p>
+            <div className="flex items-center justify-between mb-2">
+              <h2 className="text-[#f88415] text-xl font-semibold">
+                Step Tracker
+              </h2>
+              <Link to="/steps">
+                <button className="bg-[#f88415] text-[#141919] px-3 py-1 rounded-md text-sm font-medium hover:opacity-90 transition">
+                  View
+                </button>
+              </Link>
+            </div>
+            <Widget
+              strokeDashoffset={176 * (1 - 0.65)}
+              precent="65%"
+              text="5,200 / 8,000 steps"
+            />
           </section>
 
-          {/* Calorie Tracker Card */}
+          {/* Calorie Tracker Widget */}
           <section className="bg-[#232828] rounded-md p-4 shadow-md">
-            <h2 className="text-[#f88415] text-xl font-semibold">
-              Calorie Tracker
-            </h2>
-            <p className="text-lg mt-2">Total Calories: {calories}</p>
-            <button
-              onClick={handleScanBarcode}
-              className="mt-4 bg-[#f88415] text-[#141919] px-4 py-2 rounded-md font-medium hover:opacity-90 transition"
-            >
-              Scan Barcode
-            </button>
+            <div className="flex items-center justify-between mb-2">
+              <h2 className="text-[#f88415] text-xl font-semibold">
+                Calorie Tracker
+              </h2>
+              <Link to="/calories">
+                <button className="bg-[#f88415] text-[#141919] px-3 py-1 rounded-md text-sm font-medium hover:opacity-90 transition">
+                  View
+                </button>
+              </Link>
+            </div>
+            <Widget
+              strokeDashoffset={176 * (1 - 0.6)}
+              precent="60%"
+              text="1,200 / 2,000 kcal"
+            />
           </section>
 
-          {/* Maintenance Calories Card */}
+          {/* Maintenance Calories Widget */}
           <section className="bg-[#232828] rounded-md p-4 shadow-md">
-            <h2 className="text-[#f88415] text-xl font-semibold">
-              Maintenance Calories
-            </h2>
-            <p className="text-lg mt-2">{maintenanceCalories} kcal</p>
+            <div className="flex items-center justify-between mb-2">
+              <h2 className="text-[#f88415] text-xl font-semibold">
+                Maintenance Calories
+              </h2>
+              <Link to="/maintenance">
+                <button className="bg-[#f88415] text-[#141919] px-3 py-1 rounded-md text-sm font-medium hover:opacity-90 transition">
+                  View
+                </button>
+              </Link>
+            </div>
+            <Widget
+              strokeDashoffset={176 * (1 - 1)}
+              precent="100%"
+              text="Goal: 2,000 kcal"
+            />
           </section>
         </div>
       </main>

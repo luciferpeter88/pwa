@@ -10,4 +10,6 @@ export const db = new Dexie("HabitTrackerDB");
 db.version(1).stores({
   habits: "++id, date, name, completed",
   sleep: "++id, date, start, end",
+  calories: "++id, date, calories, time",
+  steps: "++id, date, steps",
 });

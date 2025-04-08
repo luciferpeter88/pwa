@@ -7,6 +7,10 @@ import Settings from "./screens/Setting";
 import DailyHabit from "./screens/DailyHabit";
 import History from "./screens/History";
 import SleepHistoryPage from "./screens/SleepHistory";
+import CalorieTrackerPage from "./screens/CalorieTracker";
+import CalorieHistoryPage from "./screens/CalorieHistory";
+import StepTrackerPage from "./screens/StepTrackerPage";
+import StepHistoryPage from "./screens/StepHistoryPage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -47,11 +51,15 @@ function App() {
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/sleep-tracking" element={<SleepTracking />} />
-        <Route path="/fittness-nutrition" element={<FittnessNutrition />} />
-        <Route path="/settings" element={<Settings />} />
+        <Route path="/sleep-history" element={<SleepHistoryPage />} />
         <Route path="/daily-habit" element={<DailyHabit />} />
         <Route path="/history" element={<History />} />
-        <Route path="/sleep-history" element={<SleepHistoryPage />} />
+        <Route path="/fittness-nutrition" element={<FittnessNutrition />} />
+        <Route path="/calories" element={<CalorieTrackerPage />} />
+        <Route path="/calorie-history" element={<CalorieHistoryPage />} />
+        <Route path="/steps" element={<StepTrackerPage />} />
+        <Route path="/step-history" element={<StepHistoryPage />} />
+        <Route path="/settings" element={<Settings />} />
       </Routes>
     </Router>
   );
