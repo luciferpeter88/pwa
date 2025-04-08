@@ -17,7 +17,6 @@ export default function useHabitsByDate(date) {
 
   const addHabit = async (name) => {
     const newHabit = {
-      id: crypto.randomUUID(),
       name,
       completed: false,
       date,

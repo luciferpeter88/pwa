@@ -15,7 +15,6 @@ export default async function analyzeAndSaveSleepData(volumeLog, startTime) {
     volumeLog.reduce((sum, val) => sum + val, 0) / volumeLog.length;
   // create sleep data object
   const sleepData = {
-    id: crypto.randomUUID(),
     date: startTime.toISOString().split("T")[0],
     start: startTime.toLocaleTimeString(),
     end: endTime.toLocaleTimeString(),
