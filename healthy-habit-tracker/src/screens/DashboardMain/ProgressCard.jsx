@@ -1,7 +1,7 @@
 const ProgressCard = () => {
   return (
-    <section className="flex relative flex-col gap-2.5 justify-center items-center px-9 py-7 w-full bg-[#232828] rounded-3xl">
-      <div className="flex gap-2.5 items-center z-[1]">
+    <section className="flex relative flex-col gap-2 justify-center items-center px-6 py-7 w-full bg-[#232828] rounded-3xl">
+      <div className="flex gap-5 items-center">
         <div className="flex flex-col gap-2 items-start">
           <h2 className="text-[5vw] font-bold text-white">
             Your Weekly Progress
