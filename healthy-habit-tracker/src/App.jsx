@@ -9,13 +9,14 @@ import History from "./screens/History";
 import SleepHistoryPage from "./screens/SleepHistory";
 import CalorieTrackerPage from "./screens/CalorieTracker";
 import CalorieHistoryPage from "./screens/CalorieHistory";
-import StepTrackerPage from "./screens/StepTrackerPage";
+// import StepTrackerPage from "./screens/StepTrackerPage";
 import StepHistoryPage from "./screens/StepHistoryPage";
 import CalorieMaintenancePage from "./screens/CalorieMaintenance";
 import DashboardStats from "./screens/Stats/DashboardStats";
 import ProfileDashboard from "./screens/Profile/ProfileDashboard";
 import Layout from "./screens/Profile/Layout";
 import WaterTrackerPage from "./screens/Profile/WaterTracker";
+import StepTrackerPage from "./screens/Profile/StepTracker";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -62,7 +63,7 @@ function App() {
         <Route path="/fittness-nutrition" element={<FittnessNutrition />} />
         <Route path="/calories" element={<CalorieTrackerPage />} />
         <Route path="/calorie-history" element={<CalorieHistoryPage />} />
-        <Route path="/steps" element={<StepTrackerPage />} />
+        {/* <Route path="/steps" element={<StepTrackerPage />} /> */}
         <Route path="/step-history" element={<StepHistoryPage />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/maintenance" element={<CalorieMaintenancePage />} />
@@ -71,6 +72,7 @@ function App() {
         <Route path="/profile" element={<Layout />}>
           <Route index element={<ProfileDashboard />} />
           <Route path="water" element={<WaterTrackerPage />} />
+          <Route path="steps" element={<StepTrackerPage />} />
         </Route>
         {/* <Route path="/profile" element={<ProfileDashboard />} /> */}
       </Routes>
