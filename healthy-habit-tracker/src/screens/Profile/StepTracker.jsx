@@ -27,7 +27,7 @@ function StepTrackerPage() {
   const hourlyLabels = ["12AM", "1PM", "2PM", "3PM", "4PM", "5PM", "6PM"];
   const hourlySteps = [500, 300, 1828, 700, 2500, 2300, 1800];
 
-  const weeklyLabels = ["T", "F", "S", "S", "M", "T", "W"];
+  const weeklyLabels = ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"];
   const weeklySteps = [4200, 4500, 4800, 4000, 5000, 4600, 4600];
 
   const hourlyChartData = {
@@ -83,7 +83,7 @@ function StepTrackerPage() {
         <div className="flex items-center justify-between mb-3">
           <div>
             <h2 className="text-[4vw] text-white">Total Steps</h2>
-            <p className="text-[7vw] font-bold">
+            <p className="text-[7vw] font-bold text-[#f88415]">
               {todaySteps.toLocaleString()}{" "}
               <span className="text-sm font-normal">steps</span>
             </p>
@@ -107,11 +107,10 @@ function StepTrackerPage() {
           </span>{" "}
           steps a day over the last 7 days
         </p>
-        <p className="text-[6vw] font-bold text-white mb-3">
-          {avgSteps.toLocaleString()}{" "}
-          <span className="text-sm font-normal">steps</span>
-        </p>
-        <Bar data={weeklyChartData} options={chartOptions} />
+
+        <div className="mt-3">
+          <Bar data={weeklyChartData} options={chartOptions} />
+        </div>
       </div>
     </div>
   );

@@ -22,6 +22,7 @@ ChartJS.register(
 
 function CalorieBurnedPage() {
   const [data, setData] = useState([]);
+  const weeklyLabels = ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"];
 
   useEffect(() => {
     async function fetchData() {
@@ -46,7 +47,7 @@ function CalorieBurnedPage() {
   });
   console.log(data);
   const chartData = {
-    labels,
+    labels: weeklyLabels,
     datasets: [
       {
         label: "Kcal Burned",
