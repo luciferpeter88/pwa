@@ -67,7 +67,7 @@ function CalorieBurnedPage() {
       },
       title: {
         display: true,
-        text: "This Week Details",
+        // text: "This Week Details",
         color: "#f1f1f1",
         font: {
           size: 18,
@@ -103,9 +103,9 @@ function CalorieBurnedPage() {
 
   return (
     <div className="text-gray-100">
-      <h1 className="text-[#f88415] text-[4vw] font-bold mb-6">
-        Calorie Burned
-      </h1>
+      <p className="text-[7vw] font-bold text-[#f88415]">18000 </p>
+      <span className=" text-[4vw] font-bold mb-6">Calorie Burned</span>
+
       <div className="rounded-md">
         {data.length === 0 ? (
           <p className="text-gray-400">No data found for this week.</p>

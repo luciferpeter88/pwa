@@ -75,7 +75,7 @@ function WaterTrackerPage() {
     <div className="w-full">
       <div className=" rounded-md mb-6">
         <h2 className="text-[4vw] text-white">Total Drank</h2>
-        <p className="text-[8vw] font-bold">
+        <p className="text-[8vw] font-bold text-[#f88415]">
           {todayGlasses} <span className="text-sm font-normal">glass</span>
         </p>
         <p className="text-sm text-white">Today</p>
