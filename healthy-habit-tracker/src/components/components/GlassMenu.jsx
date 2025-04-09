@@ -1,4 +1,3 @@
-// import { Flame, HeartPulse, Droplet } from "lucide-react";
 import GlassButton from "./GlassButton";
 import fire from "../../assets/Fire.png";
 import glass from "../../assets/Glass.png";
