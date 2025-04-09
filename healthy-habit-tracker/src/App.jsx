@@ -13,6 +13,9 @@ import StepTrackerPage from "./screens/StepTrackerPage";
 import StepHistoryPage from "./screens/StepHistoryPage";
 import CalorieMaintenancePage from "./screens/CalorieMaintenance";
 import DashboardStats from "./screens/Stats/DashboardStats";
+import ProfileDashboard from "./screens/Profile/ProfileDashboard";
+import Layout from "./screens/Profile/Layout";
+import WaterTrackerPage from "./screens/Profile/WaterTracker";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -65,6 +68,11 @@ function App() {
         <Route path="/maintenance" element={<CalorieMaintenancePage />} />
         {/* newly added routes */}
         <Route path="/stats" element={<DashboardStats />} />
+        <Route path="/profile" element={<Layout />}>
+          <Route index element={<ProfileDashboard />} />
+          <Route path="water" element={<WaterTrackerPage />} />
+        </Route>
+        {/* <Route path="/profile" element={<ProfileDashboard />} /> */}
       </Routes>
     </Router>
   );
