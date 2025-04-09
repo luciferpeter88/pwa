@@ -41,60 +41,60 @@ const Dashboard = () => {
   const text = `${completedCount} of ${habits?.length} habits completed today`;
   console.log(habits);
   return (
-    // <div className="bg-[#141919] min-h-screen text-gray-100 flex flex-col">
-    //   {/* Header / Top Bar */}
-    //   <header className="p-4 flex items-center justify-between bg-[#232828] shadow-md">
-    //     <h1 className="text-[#f88415] text-lg font-bold">Dashboard</h1>
-    //   </header>
-    //   <WeeklyProgress />
+    <div className="bg-[#141919] min-h-screen text-gray-100 flex flex-col">
+      {/* Header / Top Bar */}
+      <header className="p-4 flex items-center justify-between bg-[#232828] shadow-md">
+        <h1 className="text-[#f88415] text-lg font-bold">Dashboard</h1>
+      </header>
+      <WeeklyProgress />
 
-    //   <main className="p-4 flex-1 overflow-y-auto">
-    //     <div className="space-y-6">
-    //       <DashboardCard
-    //         title="Daily Habits"
-    //         to="/daily-habit"
-    //         buttonText="Details"
-    //       >
-    //         <Widget
-    //           strokeDashoffset={strokeDashoffset || 0}
-    //           precent={progress ? percent : "0%"}
-    //           text={completedCount ? text : "No habit's for today"}
-    //         />
-    //       </DashboardCard>
+      <main className="p-4 flex-1 overflow-y-auto">
+        <div className="space-y-6">
+          <DashboardCard
+            title="Daily Habits"
+            to="/daily-habit"
+            buttonText="Details"
+          >
+            <Widget
+              strokeDashoffset={strokeDashoffset || 0}
+              precent={progress ? percent : "0%"}
+              text={completedCount ? text : "No habit's for today"}
+            />
+          </DashboardCard>
 
-    //       <DashboardCard
-    //         title="Nap Summary"
-    //         to="/sleep-tracking"
-    //         buttonText="Details"
-    //       >
-    //         <Widget
-    //           strokeDashoffset={176 * (1 - 1)}
-    //           precent="100%"
-    //           text={<p>Slept: {nap[nap.length - 1]?.durationMinutes}minutes</p>}
-    //         />
-    //       </DashboardCard>
+          <DashboardCard
+            title="Nap Summary"
+            to="/sleep-tracking"
+            buttonText="Details"
+          >
+            <Widget
+              strokeDashoffset={176 * (1 - 1)}
+              precent="100%"
+              text={<p>Slept: {nap[nap.length - 1]?.durationMinutes}minutes</p>}
+            />
+          </DashboardCard>
 
-    //       <DashboardCard
-    //         title="Fitness & Nutrition"
-    //         to="/fittness-nutrition"
-    //         buttonText="Details"
-    //       >
-    //         <Widget
-    //           strokeDashoffset={176 * (1 - 0.66)}
-    //           precent="66%"
-    //           text={
-    //             <div>
-    //               <p> Calories: 1200 / 1800</p>
-    //               <p>Steps: 5000 / 8000</p>
-    //             </div>
-    //           }
-    //         />
-    //       </DashboardCard>
-    //     </div>
-    //   </main>
-    //   <FitnessTracker />
-    // </div>
-    <FitnessTracker />
+          <DashboardCard
+            title="Fitness & Nutrition"
+            to="/fittness-nutrition"
+            buttonText="Details"
+          >
+            <Widget
+              strokeDashoffset={176 * (1 - 0.66)}
+              precent="66%"
+              text={
+                <div>
+                  <p> Calories: 1200 / 1800</p>
+                  <p>Steps: 5000 / 8000</p>
+                </div>
+              }
+            />
+          </DashboardCard>
+        </div>
+      </main>
+      <FitnessTracker />
+    </div>
+    // <FitnessTracker />
   );
 };
 
