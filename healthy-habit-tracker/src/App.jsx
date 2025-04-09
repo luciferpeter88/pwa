@@ -11,6 +11,7 @@ import CalorieTrackerPage from "./screens/CalorieTracker";
 import CalorieHistoryPage from "./screens/CalorieHistory";
 import StepTrackerPage from "./screens/StepTrackerPage";
 import StepHistoryPage from "./screens/StepHistoryPage";
+import CalorieMaintenancePage from "./screens/CalorieMaintenance";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -60,6 +61,7 @@ function App() {
         <Route path="/steps" element={<StepTrackerPage />} />
         <Route path="/step-history" element={<StepHistoryPage />} />
         <Route path="/settings" element={<Settings />} />
+        <Route path="/maintenance" element={<CalorieMaintenancePage />} />
       </Routes>
     </Router>
   );

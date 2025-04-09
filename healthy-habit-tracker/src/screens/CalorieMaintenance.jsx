@@ -1,38 +1,40 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../utils/db";
 
-function StepGoalPage() {
-  const [goal, setGoal] = useState(8000);
-  const [input, setInput] = useState("8000");
+function CalorieMaintenancePage() {
+  const [calories, setCalories] = useState(2000);
+  const [input, setInput] = useState("2000");
 
   useEffect(() => {
-    async function fetchGoal() {
-      const setting = await db.settings.get("stepGoal");
+    async function fetchSetting() {
+      const setting = await db.settings.get("maintenanceCalories");
       if (setting) {
-        setGoal(setting.value);
+        setCalories(setting.value);
         setInput(String(setting.value));
       }
     }
-    fetchGoal();
+    fetchSetting();
   }, []);
 
   const handleSave = async () => {
     const value = parseInt(input);
     if (!isNaN(value) && value > 0) {
-      await db.settings.put({ key: "stepGoal", value });
-      setGoal(value);
+      await db.settings.put({ key: "maintenanceCalories", value });
+      setCalories(value);
     }
   };
 
   return (
     <div className="bg-[#141919] min-h-screen text-gray-100 p-4">
-      <h1 className="text-[#f88415] text-xl font-bold mb-6">Step Goal</h1>
+      <h1 className="text-[#f88415] text-xl font-bold mb-6">
+        Maintenance Calories
+      </h1>
 
       <section className="bg-[#232828] p-4 rounded-md">
         <h2 className="text-[#f88415] text-lg font-semibold mb-2">
-          Your current daily goal:
+          Your current maintenance goal:
         </h2>
-        <p className="text-lg mb-4">{goal} steps</p>
+        <p className="text-lg mb-4">{calories} kcal</p>
 
         <input
           type="number"
@@ -52,4 +54,4 @@ function StepGoalPage() {
   );
 }
 
-export default StepGoalPage;
+export default CalorieMaintenancePage;
