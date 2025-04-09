@@ -18,6 +18,7 @@ function FloatingGlassMenu() {
         color="bg-red-100/10"
         textColor="text-red-300"
         position="relative bottom-10"
+        link="/step-count"
       />
       <GlassButton
         icon={glass}
