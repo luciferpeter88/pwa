@@ -73,7 +73,7 @@ function WaterTrackerPage() {
 
   return (
     <div className="w-full">
-      <div className=" rounded-md mb-6">
+      <div className=" rounded-md mb-6 px-3">
         <h2 className="text-[4vw] text-white">Total Drank</h2>
         <p className="text-[8vw] font-bold text-[#f88415]">
           {todayGlasses} <span className="text-sm font-normal">glass</span>
@@ -81,7 +81,7 @@ function WaterTrackerPage() {
         <p className="text-sm text-white">Today</p>
       </div>
 
-      <div className="w-full">
+      <div className="w-full px-3">
         <Line data={chartData} options={chartOptions} />
       </div>
       <div className="mt-5">

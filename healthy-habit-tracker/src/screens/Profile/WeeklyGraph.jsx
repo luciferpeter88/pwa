@@ -102,7 +102,7 @@ function CalorieBurnedPage() {
   };
 
   return (
-    <div className="text-gray-100">
+    <div className="text-gray-100 px-3">
       <p className="text-[7vw] font-bold text-[#f88415]">18000 </p>
       <span className=" text-[4vw] font-bold mb-6">Calorie Burned</span>
 

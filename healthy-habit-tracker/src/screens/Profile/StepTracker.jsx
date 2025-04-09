@@ -77,7 +77,7 @@ function StepTrackerPage() {
   };
 
   return (
-    <div className="bg-[#141919] space-y-4">
+    <div className="bg-[#141919] space-y-4 px-3">
       {/* Top: Today Summary */}
       <div className="">
         <div className="flex items-center justify-between mb-3">

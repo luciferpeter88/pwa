@@ -25,6 +25,7 @@ function FloatingGlassMenu() {
         color="bg-blue-100/10"
         textColor="text-blue-300"
         position="relative bottom-15"
+        link="/add-water"
       />
     </div>
   );
