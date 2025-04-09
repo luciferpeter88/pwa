@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import GlassMenu from "../../components/components/GlassMenu";
+import Vibration from "../../components/components/Vibration";
 export default function BottomNavigation() {
   const { pathname } = useLocation();
   const [isOpened, setIsOpened] = useState(false);
@@ -91,7 +92,7 @@ export default function BottomNavigation() {
           </svg>
         </button>
       </Link>
-      <button
+      <Vibration
         className="flex justify-center items-center p-2.5 bg-[#f88415] opacity-70 h-[10vw] rounded-full w-[10vw] z-40"
         onClick={() => setIsOpened(!isOpened)}
       >
@@ -106,7 +107,7 @@ export default function BottomNavigation() {
             fill="white"
           />
         </svg>
-      </button>
+      </Vibration>
       {isOpened ? <GlassMenu /> : null}
     </nav>
   );

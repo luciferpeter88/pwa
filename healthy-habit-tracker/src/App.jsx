@@ -12,11 +12,13 @@ import CalorieHistoryPage from "./screens/CalorieHistory";
 // import StepTrackerPage from "./screens/StepTrackerPage";
 import StepHistoryPage from "./screens/StepHistoryPage";
 import CalorieMaintenancePage from "./screens/CalorieMaintenance";
+// newly added imports
 import DashboardStats from "./screens/Stats/DashboardStats";
 import ProfileDashboard from "./screens/Profile/ProfileDashboard";
 import Layout from "./screens/Profile/Layout";
 import WaterTrackerPage from "./screens/Profile/WaterTracker";
 import StepTrackerPage from "./screens/Profile/StepTracker";
+import AddCalorieScreen from "./screens/Add/AddCalorieScreen";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -74,7 +76,7 @@ function App() {
           <Route path="water" element={<WaterTrackerPage />} />
           <Route path="steps" element={<StepTrackerPage />} />
         </Route>
-        {/* <Route path="/profile" element={<ProfileDashboard />} /> */}
+        <Route path="/add-kcal" element={<AddCalorieScreen />} />
       </Routes>
     </Router>
   );

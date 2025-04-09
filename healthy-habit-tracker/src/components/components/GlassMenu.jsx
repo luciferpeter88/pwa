@@ -10,6 +10,7 @@ function FloatingGlassMenu() {
         label="Kcal"
         color="bg-yellow-100/10"
         textColor="text-yellow-300"
+        link="/add-kcal"
       />
       <GlassButton
         icon={step}
