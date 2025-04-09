@@ -1,11 +1,10 @@
 import { Link, useLocation } from "react-router-dom";
+import GlassMenu from "../../components/components/GlassMenu";
 export default function BottomNavigation() {
   const { pathname } = useLocation();
   const homePath = pathname === "/" ? "#f88415" : "#6C736F";
   const profilePath = pathname.includes("/profile") ? "#f88415" : "#6C736F";
   const statsPath = pathname.includes("/stats") ? "#f88415" : "#6C736F";
-  console.log(pathname);
-  console.log(homePath);
   return (
     <nav className="flex gap-16 justify-center items-center  mt-auto w-full bg-[#232828] h-[17.5vw]">
       <Link to="/">
@@ -89,7 +88,7 @@ export default function BottomNavigation() {
           </svg>
         </button>
       </Link>
-      <button className="flex justify-center items-center p-2.5 bg-[#f88415] opacity-70 h-[10vw] rounded-full w-[10vw]">
+      <button className="flex justify-center items-center p-2.5 bg-[#f88415] opacity-70 h-[10vw] rounded-full w-[10vw] z-40">
         <svg
           className="h-[7.5vw] w-[7.5vw]"
           viewBox="0 0 20 20"
@@ -102,6 +101,7 @@ export default function BottomNavigation() {
           />
         </svg>
       </button>
+      <GlassMenu />
     </nav>
   );
 }
