@@ -1,7 +1,8 @@
 import * as React from "react";
+import { Link } from "react-router-dom";
 function Menu({ setIsMenuOpen }) {
   const menuItems = [
-    { text: "Profile" },
+    { text: "Profile", route: "/profile-settings" },
     { text: "Daily Goals" },
     { text: "About" },
     { text: "Settings" },
@@ -34,7 +35,7 @@ function Menu({ setIsMenuOpen }) {
             onClick={() => console.log(`Navigating to ${item.text}`)}
             aria-label={`Navigate to ${item.text}`}
           >
-            {item.text}
+            <Link to={item?.route}>{item.text}</Link>
           </button>
         ))}
       </div>

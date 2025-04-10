@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 function StepCounterScreen() {
+  const navigate = useNavigate();
   const [steps, setSteps] = useState(0);
   const [active, setActive] = useState(false);
-  const [permission, setPermission] = useState(false);
   const [position, setPosition] = useState(null);
   const lastAccel = useRef({ x: 0, y: 0, z: 0 });
   const threshold = 12;
@@ -58,9 +58,27 @@ function StepCounterScreen() {
   }, [active]);
 
   return (
-    <div className="bg-[#141919] min-h-screen text-gray-100 p-4">
-      <h1 className="text-[#f88415] text-xl font-bold mb-6">Step Tracker</h1>
+    <div className="bg-[#141919] min-h-screen text-white p-4 flex flex-col">
+      {/* Header */}
+      <div className="flex items-center justify-between mb-6 mt-5">
+        <button onClick={() => navigate(-1)} className="text-xl">
+          ←
+        </button>
 
+        <h2 className="text-md font-semibold">Step Counter</h2>
+
+        <button
+          className="text-sm text-[#f88415] font-medium"
+          onClick={() => {
+            setSteps(0);
+            setActive(false);
+          }}
+        >
+          Reset
+        </button>
+      </div>
+
+      {/* Main content: Step display */}
       <div className="bg-[#232828] p-6 rounded-md text-center">
         <p className="text-5xl font-bold mb-2">{steps}</p>
         <p className="text-sm text-gray-400 mb-4">
