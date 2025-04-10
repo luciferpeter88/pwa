@@ -4,9 +4,7 @@ function Menu({ setIsMenuOpen }) {
   const menuItems = [
     { text: "Profile", route: "/profile-settings" },
     { text: "Daily Goals", route: "/daily-goals" },
-    { text: "About" },
     { text: "Settings" },
-    { text: "Privacy Policy" },
   ];
   const handleLogout = () => {
     console.log("Logging out...");

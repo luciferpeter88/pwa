@@ -18,10 +18,10 @@ const habitGoals = {
     unit: "kcal",
   },
   sleep: {
-    label: "Sleep",
-    goal: 8,
-    data: [7.5, 6.2, 7.8, 8, 7.3, 6.9, 7.6],
-    unit: "h",
+    label: "Drink Water",
+    goal: 2,
+    data: [2.5, 1.8, 2.2, 3, 2.5, 2.7, 1.9],
+    unit: "L",
   },
 };
 
