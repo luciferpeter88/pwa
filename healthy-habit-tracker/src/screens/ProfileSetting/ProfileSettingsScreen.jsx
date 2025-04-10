@@ -1,12 +1,15 @@
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useSpeechToText from "../../hooks/useSpeechToText";
 
 function ProfilePage() {
   const navigate = useNavigate();
+  const { transcript, setTranscript, isListening, startListening } =
+    useSpeechToText();
   const [image, setImage] = useState(null);
   const [showCamera, setShowCamera] = useState(false);
-  const [aboutMe, setAboutMe] = useState("");
-  const [isListening, setIsListening] = useState(false);
+  // const [aboutMe, setAboutMe] = useState("");
+  // const [isListening, setIsListening] = useState(false);
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
 
@@ -37,38 +40,6 @@ function ProfilePage() {
     setShowCamera(false);
 
     // TODO: Save imageData to IndexedDB later
-  };
-
-  // Speech Recognition setup
-  const SpeechRecognition =
-    window.SpeechRecognition || window.webkitSpeechRecognition;
-  const recognition = SpeechRecognition ? new SpeechRecognition() : null;
-
-  const startListening = () => {
-    if (!recognition) {
-      alert("Speech recognition is not supported in your browser.");
-      return;
-    }
-
-    recognition.continuous = false;
-    recognition.lang = "en-US";
-    recognition.interimResults = false;
-
-    recognition.onstart = () => setIsListening(true);
-    recognition.onend = () => setIsListening(false);
-
-    recognition.onresult = (event) => {
-      const transcript = event.results[0][0].transcript;
-      setAboutMe(transcript);
-    };
-
-    recognition.onerror = (event) => {
-      console.error("Speech recognition error:", event.error);
-      alert("An error occurred during speech recognition.");
-      setIsListening(false);
-    };
-
-    recognition.start();
   };
 
   return (
@@ -135,8 +106,8 @@ function ProfilePage() {
           <textarea
             rows={3}
             placeholder="Tell us about yourself..."
-            value={aboutMe}
-            onChange={(e) => setAboutMe(e.target.value)}
+            value={transcript}
+            onChange={(e) => setTranscript(e.target.value)}
             className="w-full bg-[#232828] text-white p-3 rounded-2xl border border-[#333] resize-none"
           />
           <button
