@@ -3,25 +3,26 @@ import React, { useEffect, useRef, useState } from "react";
 function StepCounterScreen() {
   const [steps, setSteps] = useState(0);
   const [active, setActive] = useState(false);
+  const [permission, setPermission] = useState(false);
+  const [position, setPosition] = useState(null);
   const lastAccel = useRef({ x: 0, y: 0, z: 0 });
   const threshold = 12;
 
   const handleToggle = async () => {
-    if (
-      !active &&
-      typeof DeviceMotionEvent !== "undefined" &&
-      typeof DeviceMotionEvent.requestPermission === "function"
-    ) {
-      try {
-        const permission = await DeviceMotionEvent.requestPermission();
-        if (permission !== "granted") {
-          alert("Permission for motion access was denied.");
-          return;
+    // Helyzet lekérése aktiváláskor
+    if (!active && "geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          setPosition({
+            lat: pos.coords.latitude,
+            lon: pos.coords.longitude,
+          });
+        },
+
+        (err) => {
+          console.warn("Geolocation error:", err);
         }
-      } catch (err) {
-        console.error("Motion permission error:", err);
-        return;
-      }
+      );
     }
 
     setActive((prev) => !prev);
@@ -58,20 +59,25 @@ function StepCounterScreen() {
 
   return (
     <div className="bg-[#141919] min-h-screen text-gray-100 p-4">
-      <h1 className="text-[#f88415] text-xl font-bold mb-6">
-        Step Tracker (Fallback)
-      </h1>
+      <h1 className="text-[#f88415] text-xl font-bold mb-6">Step Tracker</h1>
 
       <div className="bg-[#232828] p-6 rounded-md text-center">
         <p className="text-5xl font-bold mb-2">{steps}</p>
         <p className="text-sm text-gray-400 mb-4">
           steps counted from device motion
         </p>
+
+        {position && (
+          <p className="text-xs text-gray-400 mb-4">
+            Start Position: {position.lat.toFixed(5)}, {position.lon.toFixed(5)}
+          </p>
+        )}
+
         <button
           onClick={handleToggle}
           className="bg-[#f88415] text-[#141919] px-6 py-2 rounded-md font-medium hover:opacity-90 transition"
         >
-          {active ? "Stop Counting" : "Start Counting"}
+          {position && active ? "Stop Tracking" : "Start Tracking"}
         </button>
       </div>
     </div>
