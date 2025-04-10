@@ -23,6 +23,8 @@ import AddWaterScreen from "./screens/Add/AddWaterScreen";
 import StepCounterScreen from "./screens/Add/StepCountScreen";
 import ProfilePage from "./screens/ProfileSetting/ProfileSettings";
 import DailyGoals from "./screens/DailyGoals/DailyGoals";
+import Login from "./screens/Login/Login";
+import Register from "./screens/Register/Register";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -61,7 +63,6 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Dashboard />} />
         <Route path="/sleep-tracking" element={<SleepTracking />} />
         <Route path="/sleep-history" element={<SleepHistoryPage />} />
         <Route path="/daily-habit" element={<DailyHabit />} />
@@ -74,6 +75,9 @@ function App() {
         <Route path="/settings" element={<Settings />} />
         <Route path="/maintenance" element={<CalorieMaintenancePage />} />
         {/* newly added routes */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/" element={<Dashboard />} />
         <Route path="/stats" element={<DashboardStats />} />
         <Route path="/profile" element={<Layout />}>
           <Route index element={<ProfileDashboard />} />
