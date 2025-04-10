@@ -51,7 +51,7 @@ function ProfilePage() {
     }
 
     recognition.continuous = false;
-    recognition.lang = "en-US"; // or "hu-HU" if you want Hungarian
+    recognition.lang = "en-US";
     recognition.interimResults = false;
 
     recognition.onstart = () => setIsListening(true);
