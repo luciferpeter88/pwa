@@ -22,6 +22,7 @@ import AddCalorieScreen from "./screens/Add/AddCalorieScreen";
 import AddWaterScreen from "./screens/Add/AddWaterScreen";
 import StepCounterScreen from "./screens/Add/StepCountScreen";
 import ProfilePage from "./screens/ProfileSetting/ProfileSettings";
+import DailyGoals from "./screens/DailyGoals/DailyGoals";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -83,6 +84,7 @@ function App() {
         <Route path="/add-water" element={<AddWaterScreen />} />
         <Route path="/step-count" element={<StepCounterScreen />} />
         <Route path="/profile-settings" element={<ProfilePage />} />
+        <Route path="/daily-goals" element={<DailyGoals />} />
       </Routes>
     </Router>
   );

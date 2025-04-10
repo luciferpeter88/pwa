@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 function Menu({ setIsMenuOpen }) {
   const menuItems = [
     { text: "Profile", route: "/profile-settings" },
-    { text: "Daily Goals" },
+    { text: "Daily Goals", route: "/daily-goals" },
     { text: "About" },
     { text: "Settings" },
     { text: "Privacy Policy" },
