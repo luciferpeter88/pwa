@@ -1,5 +1,5 @@
 import TrackingTabs from "./TrackingTabs";
-import BottomNavigation from "../DashboardMain/BottomNavigation";
+import BottomNavigation from "../../../components/BottomNavigation";
 import { Outlet } from "react-router-dom";
 
 const Layout = () => {

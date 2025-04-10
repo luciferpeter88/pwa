@@ -1,7 +1,7 @@
 import GlassButton from "./GlassButton";
-import fire from "../../assets/Fire.png";
-import glass from "../../assets/Glass.png";
-import step from "../../assets/Step.png";
+import fire from "../assets/Fire.png";
+import glass from "../assets/Glass.png";
+import step from "../assets/Step.png";
 function FloatingGlassMenu() {
   return (
     <div className="fixed bottom-5 right-6 flex space-x-3">

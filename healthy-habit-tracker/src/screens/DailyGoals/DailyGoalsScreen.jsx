@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import StatsCard from "../../screens/DashboardMain/StatsCard";
-import MetricCard from "../../screens/DashboardMain/MetricCard";
-import ProgressCard from "../../screens/DashboardMain/ProgressCard";
+import StatsCard from "../../components/StatsCard";
+import MetricCard from "../../components/MetricCard";
+import ProgressCard from "../../components/ProgressCard";
 import fire from "../../assets/fire.png";
 import glass from "../../assets/Glass.png";
 import steps from "../../assets/Step.png";

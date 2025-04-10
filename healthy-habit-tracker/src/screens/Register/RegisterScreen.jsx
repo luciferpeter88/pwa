@@ -34,7 +34,7 @@ export function Register() {
 
       <p className="text-sm text-gray-400">
         Already have an account?{" "}
-        <button onClick={() => navigate("/login")} className="text-[#f88415]">
+        <button onClick={() => navigate("/")} className="text-[#f88415]">
           Log in
         </button>
       </p>

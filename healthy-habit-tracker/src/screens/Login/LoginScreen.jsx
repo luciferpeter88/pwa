@@ -21,7 +21,7 @@ export default function Login() {
 
       <button
         className="w-full max-w-sm bg-[#f88415] text-white py-3 rounded-md font-semibold hover:opacity-90"
-        onClick={() => navigate("/")}
+        onClick={() => navigate("/dashboard")}
       >
         Login
       </button>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Menu from "../../components/Menu";
+import Menu from "./Menu";
 export default function NavigationHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (

@@ -1,8 +1,8 @@
 import React from "react";
-import StatsCard from "./StatsCard";
-import MetricsGrid from "./MetricsGrid";
-import ActivityGraph from "./ActivityGraph";
-import BottomNavigation from "../DashboardMain/BottomNavigation";
+import StatsCard from "./components/StatsCard";
+import MetricsGrid from "./components/MetricsGrid";
+import ActivityGraph from "./components/ActivityGraph";
+import BottomNavigation from "../../components/BottomNavigation";
 
 function DashboardStats() {
   return (

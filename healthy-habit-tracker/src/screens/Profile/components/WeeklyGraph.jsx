@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { db } from "../../utils/db";
+import { db } from "../../../utils/db";
 import {
   Chart as ChartJS,
   CategoryScale,

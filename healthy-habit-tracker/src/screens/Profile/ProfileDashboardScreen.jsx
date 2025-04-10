@@ -1,7 +1,7 @@
 import React from "react";
-import WeeklyGraph from "./WeeklyGraph";
-import CalendarIcon from "./Calendaricon";
-import ProgressCard from "../DashboardMain/ProgressCard";
+import WeeklyGraph from "./components/WeeklyGraph";
+import CalendarIcon from "./components/Calendaricon";
+import ProgressCard from "../../components/ProgressCard";
 
 const ProfileDashboard = () => {
   return (

@@ -1,13 +1,13 @@
 import React from "react";
-import BrandHeader from "./Header";
-import StatsCard from "./StatsCard";
-import MetricCard from "./MetricCard";
-import ProgressCard from "./ProgressCard";
-import WorkoutCard from "./WorkoutCard";
+import BrandHeader from "../../components/Header";
+import StatsCard from "../../components/StatsCard";
+import MetricCard from "../../components/MetricCard";
+import ProgressCard from "../../components/ProgressCard";
+import WorkoutCard from "../../components/WorkoutCard";
 import fire from "../../assets/fire.png";
 import glass from "../../assets/Glass.png";
 import steps from "../../assets/Step.png";
-import BottomNavigation from "./BottomNavigation";
+import BottomNavigation from "../../components/BottomNavigation";
 
 const FitnessTracker = () => {
   return (

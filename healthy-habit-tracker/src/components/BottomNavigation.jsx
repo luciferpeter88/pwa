@@ -1,17 +1,17 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
-import GlassMenu from "../../components/components/GlassMenu";
-import Vibration from "../../components/components/Vibration";
+import GlassMenu from "./GlassMenu";
+import Vibration from "./Vibration";
 export default function BottomNavigation() {
   const { pathname } = useLocation();
   const [isOpened, setIsOpened] = useState(false);
-  const homePath = pathname === "/" ? "#f88415" : "#6C736F";
+  const homePath = pathname === "/dashboard" ? "#f88415" : "#6C736F";
   const profilePath = pathname.includes("/profile") ? "#f88415" : "#6C736F";
   const statsPath = pathname.includes("/stats") ? "#f88415" : "#6C736F";
 
   return (
     <nav className="flex gap-16 justify-center items-center  mt-auto w-full bg-[#232828] h-[17.5vw]">
-      <Link to="/">
+      <Link to="/dashboard">
         <button>
           <svg
             className={`h-[7.5vw] w-[7.5vw] ${homePath}`}

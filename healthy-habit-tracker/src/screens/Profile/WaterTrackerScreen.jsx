@@ -9,7 +9,7 @@ import {
   Filler,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
-import ProgressCard from "../DashboardMain/ProgressCard";
+import ProgressCard from "../../components/ProgressCard";
 
 ChartJS.register(
   CategoryScale,

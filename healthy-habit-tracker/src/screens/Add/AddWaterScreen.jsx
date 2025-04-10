@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Vibration from "../../components/components/Vibration";
+import Vibration from "../../components/Vibration";
 
 function AddWaterScreen() {
   const navigate = useNavigate();
