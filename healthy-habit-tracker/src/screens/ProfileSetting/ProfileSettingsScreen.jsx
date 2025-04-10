@@ -5,6 +5,8 @@ function ProfilePage() {
   const navigate = useNavigate();
   const [image, setImage] = useState(null);
   const [showCamera, setShowCamera] = useState(false);
+  const [aboutMe, setAboutMe] = useState("");
+  const [isListening, setIsListening] = useState(false);
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
 
@@ -12,8 +14,6 @@ function ProfilePage() {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
       setShowCamera(true);
-      // Set a timeout to ensure the video element is ready before setting the stream
-      // This is a workaround for some devices where the stream may not be set immediately
       setTimeout(() => {
         if (videoRef.current) {
           videoRef.current.srcObject = stream;
@@ -37,6 +37,38 @@ function ProfilePage() {
     setShowCamera(false);
 
     // TODO: Save imageData to IndexedDB later
+  };
+
+  // Speech Recognition setup
+  const SpeechRecognition =
+    window.SpeechRecognition || window.webkitSpeechRecognition;
+  const recognition = SpeechRecognition ? new SpeechRecognition() : null;
+
+  const startListening = () => {
+    if (!recognition) {
+      alert("Speech recognition is not supported in your browser.");
+      return;
+    }
+
+    recognition.continuous = false;
+    recognition.lang = "en-US"; // or "hu-HU" if you want Hungarian
+    recognition.interimResults = false;
+
+    recognition.onstart = () => setIsListening(true);
+    recognition.onend = () => setIsListening(false);
+
+    recognition.onresult = (event) => {
+      const transcript = event.results[0][0].transcript;
+      setAboutMe(transcript);
+    };
+
+    recognition.onerror = (event) => {
+      console.error("Speech recognition error:", event.error);
+      alert("An error occurred during speech recognition.");
+      setIsListening(false);
+    };
+
+    recognition.start();
   };
 
   return (
@@ -97,6 +129,23 @@ function ProfilePage() {
           defaultValue="07401772626"
           className="w-full bg-[#232828] text-white p-3 rounded-full border border-[#333]"
         />
+
+        {/* About Me Section */}
+        <div className="relative">
+          <textarea
+            rows={3}
+            placeholder="Tell us about yourself..."
+            value={aboutMe}
+            onChange={(e) => setAboutMe(e.target.value)}
+            className="w-full bg-[#232828] text-white p-3 rounded-2xl border border-[#333] resize-none"
+          />
+          <button
+            onClick={startListening}
+            className="absolute bottom-2 right-3 text-white bg-[#f88415] px-3 py-1 rounded-full text-sm hover:opacity-90"
+          >
+            {isListening ? "Listening..." : "Speak"}
+          </button>
+        </div>
       </div>
     </div>
   );
