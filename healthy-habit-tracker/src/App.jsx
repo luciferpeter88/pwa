@@ -1,18 +1,19 @@
 import { useEffect, useState } from "react";
 import Dashboard from "./screens/Dashboard";
 import DashboardScreen from "./screens/DashboardMain/DashboardScreen";
-import DashboardStats from "./screens/Stats/DashboardStatsScreen";
-import ProfileDashboard from "./screens/Profile/ProfileDashboardScreen";
+import DashboardStatsScreen from "./screens/Stats/DashboardStatsScreen";
+import ProfileDashboardScreen from "./screens/Profile/ProfileDashboardScreen";
 import Layout from "./screens/Profile/components/Layout";
-import WaterTrackerPage from "./screens/Profile/WaterTrackerScreen";
-import StepTrackerPage from "./screens/Profile/StepTrackerScreen";
+import WaterTrackerScreen from "./screens/Profile/WaterTrackerScreen";
+import StepTrackerScreen from "./screens/Profile/StepTrackerScreen";
 import AddCalorieScreen from "./screens/Add/AddCalorieScreen";
 import AddWaterScreen from "./screens/Add/AddWaterScreen";
 import StepCounterScreen from "./screens/Add/StepCountScreen";
-import ProfilePage from "./screens/ProfileSetting/ProfileSettingsScreen";
-import DailyGoals from "./screens/DailyGoals/DailyGoalsScreen";
-import Login from "./screens/Login/LoginScreen";
-import Register from "./screens/Register/RegisterScreen";
+import ProfilePageScreen from "./screens/ProfileSetting/ProfileSettingsScreen";
+import DailyGoalsScreen from "./screens/DailyGoals/DailyGoalsScreen";
+import LoginScreen from "./screens/Login/LoginScreen";
+import RegisterScreen from "./screens/Register/RegisterScreen";
+import SettingsScreen from "./screens/Settings/SettingsScreen";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -43,20 +44,21 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/" element={<LoginScreen />} />
+        <Route path="/register" element={<RegisterScreen />} />
         <Route path="/dashboard" element={<DashboardScreen />} />
-        <Route path="/stats" element={<DashboardStats />} />
+        <Route path="/stats" element={<DashboardStatsScreen />} />
         <Route path="/profile" element={<Layout />}>
-          <Route index element={<ProfileDashboard />} />
-          <Route path="water" element={<WaterTrackerPage />} />
-          <Route path="steps" element={<StepTrackerPage />} />
+          <Route index element={<ProfileDashboardScreen />} />
+          <Route path="water" element={<WaterTrackerScreen />} />
+          <Route path="steps" element={<StepTrackerScreen />} />
         </Route>
         <Route path="/add-kcal" element={<AddCalorieScreen />} />
         <Route path="/add-water" element={<AddWaterScreen />} />
         <Route path="/step-count" element={<StepCounterScreen />} />
-        <Route path="/profile-settings" element={<ProfilePage />} />
-        <Route path="/daily-goals" element={<DailyGoals />} />
+        <Route path="/profile-settings" element={<ProfilePageScreen />} />
+        <Route path="/daily-goals" element={<DailyGoalsScreen />} />
+        <Route path="/settings" element={<SettingsScreen />} />
       </Routes>
     </Router>
   );

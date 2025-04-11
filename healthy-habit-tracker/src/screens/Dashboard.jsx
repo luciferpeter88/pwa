@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import fetchHabitsFromDB from "../utils/fetchAllHabit";
-import fetchNapFromDB from "../utils/fetchNap";
+// import fetchHabitsFromDB from "../utils/fetchAllHabit";
+// import fetchNapFromDB from "../utils/fetchNap";
 
 import FitnessTracker from "./DashboardMain/DashboardScreen";
 
