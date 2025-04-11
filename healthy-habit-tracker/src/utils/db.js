@@ -8,6 +8,8 @@ export const db = new Dexie("HabitTrackerDB");
 
 db.version(1).stores({
   users: "++id, name, email, password",
+  // userID is a foreign key to the users table
+  calories: "++id, userID, date, calories, time",
   // habits: "++id, date, name, completed",
   // sleep: "++id, date, start, end",
   // calories: "++id, date, calories, time",

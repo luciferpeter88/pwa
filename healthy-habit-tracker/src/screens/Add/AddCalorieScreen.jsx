@@ -1,24 +1,23 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Vibration from "../../components/Vibration";
+import dateConversation from "../../utils/dateConvertion";
+import { addCalorieEntry } from "../../utils/trackingService";
 
 function AddCalorieScreen() {
   const navigate = useNavigate();
-  const [date, setDate] = useState(
-    () => new Date().toISOString().split("T")[0]
-  );
-  const [time, setTime] = useState(() =>
-    new Date().toLocaleTimeString("en-GB", {
-      hour: "2-digit",
-      minute: "2-digit",
-    })
-  );
+  const { currentDate, currentTime } = dateConversation();
+  const [date, setDate] = useState(currentDate);
+  const [time, setTime] = useState(currentTime);
   const [kcal, setKcal] = useState("");
 
   const handleSave = () => {
+    // if the calorie input is empty retrn
     if (!kcal || isNaN(kcal)) return;
-    // Save to DB here (e.g., db.calories.add(...))
-    navigate(-1);
+    // add the calorie entry to the database
+    addCalorieEntry(date, time, parseInt(kcal));
+    // navigate back to calorie tracker
+    navigate("/profile");
   };
 
   return (

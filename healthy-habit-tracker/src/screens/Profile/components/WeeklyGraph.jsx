@@ -28,6 +28,7 @@ function CalorieBurnedPage() {
     async function fetchData() {
       const all = await db.calories?.toArray();
       const grouped = {};
+      if (!all) return;
       for (const entry of all) {
         if (!grouped[entry.date]) grouped[entry.date] = 0;
         grouped[entry.date] += entry.calories;
