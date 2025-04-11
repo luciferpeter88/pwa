@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import regster from "../../assets/register.png";
-import userService from "../../utils/userService";
+import { registerUser } from "../../utils/userService";
 export function Register() {
   const navigate = useNavigate();
   // State to manage form data
@@ -15,7 +15,7 @@ export function Register() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const registerUser = userService;
+    // const registerUser = registerUser;
     try {
       const response = await registerUser(form.name, form.email, form.password);
       // if the response is not successful, set the message and return nothing
@@ -31,7 +31,6 @@ export function Register() {
       console.log(err);
     }
   };
-  console.log(message);
 
   return (
     <form
