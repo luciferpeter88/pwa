@@ -1,46 +1,16 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import useSpeechToText from "../../hooks/useSpeechToText";
+import useCapturePicture from "../../hooks/useCapturePicture";
 
 function ProfilePage() {
   const navigate = useNavigate();
+  // get the speech to text hook
   const { transcript, setTranscript, isListening, startListening } =
     useSpeechToText();
-  const [image, setImage] = useState(null);
-  const [showCamera, setShowCamera] = useState(false);
-  // const [aboutMe, setAboutMe] = useState("");
-  // const [isListening, setIsListening] = useState(false);
-  const videoRef = useRef(null);
-  const canvasRef = useRef(null);
-
-  const openCamera = async () => {
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-      setShowCamera(true);
-      setTimeout(() => {
-        if (videoRef.current) {
-          videoRef.current.srcObject = stream;
-          videoRef.current.play();
-        }
-      }, 100);
-    } catch (err) {
-      console.error("Camera access denied", err);
-      alert("Camera permission is required to take a profile photo.");
-    }
-  };
-
-  const capturePhoto = () => {
-    const canvas = canvasRef.current;
-    const video = videoRef.current;
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-    canvas.getContext("2d").drawImage(video, 0, 0);
-    const imageData = canvas.toDataURL("image/png");
-    setImage(imageData);
-    setShowCamera(false);
-
-    // TODO: Save imageData to IndexedDB later
-  };
+  // get the camera hook
+  const { image, showCamera, videoRef, canvasRef, openCamera, capturePhoto } =
+    useCapturePicture();
 
   return (
     <div className="bg-[#141919] min-h-screen text-white p-4 flex flex-col items-center">
