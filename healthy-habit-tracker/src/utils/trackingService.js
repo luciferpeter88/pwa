@@ -13,3 +13,25 @@ export async function addCalorieEntry(date, time, kcal) {
     calories: kcal,
   });
 }
+
+// export async function addWaterEntry(amount) {
+//   const userId = getLoggedInUserId();
+//   if (!userId) return;
+
+//   await db.water.add({
+//     amount,            // in ml
+//     timestamp: Date.now(),
+//     userId,
+//   });
+// }
+
+// export async function addStepEntry(count) {
+//     const userId = getLoggedInUserId();
+//     if (!userId) return;
+
+//     await db.steps.add({
+//       count,
+//       timestamp: Date.now(),
+//       userId,
+//     });
+//   }

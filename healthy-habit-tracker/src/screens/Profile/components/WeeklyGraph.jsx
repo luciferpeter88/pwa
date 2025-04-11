@@ -10,6 +10,10 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
+import {
+  generateCaloriesChartData,
+  baseChartOptions,
+} from "../../../utils/generateCaloriesChartData";
 
 ChartJS.register(
   CategoryScale,
@@ -22,7 +26,6 @@ ChartJS.register(
 
 function CalorieBurnedPage() {
   const [data, setData] = useState([]);
-  const weeklyLabels = ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"];
 
   useEffect(() => {
     async function fetchData() {
@@ -46,72 +49,24 @@ function CalorieBurnedPage() {
     const date = new Date(entry.date);
     return date.toLocaleDateString("en-US", { weekday: "short" });
   });
-  console.log(data);
-  const chartData = {
-    labels: weeklyLabels,
-    datasets: [
-      {
-        label: "Kcal Burned",
-        data: data.map((entry) => entry.calories),
-        backgroundColor: "#f88415",
-        borderRadius: 6,
-        barThickness: 24,
-      },
-    ],
-  };
-
-  const chartOptions = {
-    responsive: true,
-    plugins: {
-      legend: {
-        display: false,
-      },
-      title: {
-        display: true,
-        // text: "This Week Details",
-        color: "#f1f1f1",
-        font: {
-          size: 18,
-        },
-      },
-    },
-    scales: {
-      x: {
-        ticks: {
-          color: "#f1f1f1",
-        },
-        grid: {
-          color: "#2a2a2a",
-        },
-      },
-      y: {
-        beginAtZero: true,
-        min: 0,
-        max: 5000,
-        ticks: {
-          stepSize: 1000,
-          callback: function (value) {
-            return value.toLocaleString();
-          },
-          color: "#f1f1f1",
-        },
-        grid: {
-          color: "#2a2a2a",
-        },
-      },
-    },
-  };
-
+  // Calculate total calories burned
+  const totalCalories = data.reduce((acc, entry) => acc + entry.calories, 0);
+  // Generate chart data
+  const chartData = generateCaloriesChartData(data, labels);
   return (
     <div className="text-gray-100 px-3">
-      <p className="text-[7vw] font-bold text-[#f88415]">18000 </p>
-      <span className=" text-[4vw] font-bold mb-6">Calorie Burned</span>
+      <p className="text-[7vw] font-bold text-[#f88415] flex items-baseline justify-between">
+        {totalCalories} kcal
+        <span className=" text-[4vw] font-bold mb-6 text-white">
+          Calorie Burned
+        </span>
+      </p>
 
       <div className="rounded-md">
         {data.length === 0 ? (
           <p className="text-gray-400">No data found for this week.</p>
         ) : (
-          <Bar data={chartData} options={chartOptions} />
+          <Bar data={chartData} options={baseChartOptions} />
         )}
       </div>
     </div>
