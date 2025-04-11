@@ -26,7 +26,7 @@ function CalorieBurnedPage() {
 
   useEffect(() => {
     async function fetchData() {
-      const all = await db.calories.toArray();
+      const all = await db.calories?.toArray();
       const grouped = {};
       for (const entry of all) {
         if (!grouped[entry.date]) grouped[entry.date] = 0;

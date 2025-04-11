@@ -10,7 +10,7 @@ export default function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    console.log(form);
+    // validate email and password
     const result = await loginUser(form.email, form.password);
 
     if (!result.success) {

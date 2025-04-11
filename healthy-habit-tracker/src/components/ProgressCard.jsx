@@ -1,12 +1,12 @@
-const ProgressCard = () => {
+const ProgressCard = ({ progress = "Weekly" }) => {
   return (
-    <section className="flex relative flex-col gap-2 justify-center items-center px-6 py-7 w-full bg-[#232828] rounded-3xl">
-      <div className="flex gap-5 items-center">
+    <section className="flex relative flex-col gap-2 justify-center items-center px-5 py-7 w-full bg-[#232828] rounded-3xl">
+      <div className="flex gap-5 justify-between items-center w-full">
         <div className="flex flex-col gap-2 items-start">
           <h2 className="text-[5vw] font-bold text-white">
-            Your Weekly Progress
+            Your {progress} Progress
           </h2>
-          <p className="text-sm text-indigo-100">Your weekly report</p>
+          <p className="text-sm text-indigo-100">Your {progress} report</p>
         </div>
         <div className="relative">
           <svg
