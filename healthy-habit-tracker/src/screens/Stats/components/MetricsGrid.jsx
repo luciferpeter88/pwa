@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { getWeeklyTotals } from "../../../utils/getWeeklyTotals";
+import { stepsToDistance } from "../../../utils/stepsToDistance";
 
 function MetricItem({ value, label }) {
   return (
@@ -10,11 +12,33 @@ function MetricItem({ value, label }) {
 }
 
 function MetricsGrid() {
+  // per week
+  const [total, setTotal] = useState({
+    totalSteps: 0,
+    totalWater: 0,
+    totalDistance: 0,
+  });
+  useEffect(() => {
+    async function fetchData() {
+      const s = await getWeeklyTotals("steps", "steps");
+      const w = await getWeeklyTotals("water", "water");
+      // const c = await getWeeklyTotals("calories", "calories");
+      setTotal((prev) => ({
+        ...prev,
+        totalSteps: s,
+        totalWater: w,
+        totalDistance: stepsToDistance(s),
+      }));
+    }
+
+    fetchData();
+  }, []);
+  console.log(total);
   return (
     <section className="flex justify-between items-start px-4 mt-8">
-      <MetricItem value="3,256 m" label="Distance" />
-      <MetricItem value="4,753" label="Steps" />
-      <MetricItem value="6 Glass" label="Drink Water" />
+      <MetricItem value={total.totalDistance + " m"} label="Distance" />
+      <MetricItem value={total.totalSteps} label="Steps" />
+      <MetricItem value={total.totalWater + " glasses"} label="Drink Water" />
     </section>
   );
 }

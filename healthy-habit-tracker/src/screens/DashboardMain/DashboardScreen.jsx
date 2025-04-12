@@ -50,10 +50,6 @@ const FitnessTracker = () => {
         water: waterProgress.percent,
         steps: stepProgress.percent,
       }));
-
-      console.log(calorieProgress);
-      console.log(waterProgress);
-      console.log(stepProgress);
     }
 
     fetchCalories();
