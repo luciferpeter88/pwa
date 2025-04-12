@@ -1,5 +1,4 @@
 import React from "react";
-import ProgressCard from "../../components/ProgressCard";
 import HabitChart from "./components/HabitChart";
 const ProfileDashboard = () => {
   // dammy data for calories if the API is not available
