@@ -6,5 +6,8 @@ export default function dateConversation() {
         hour: "2-digit",
         minute: "2-digit",
       }),
+    formatDate: (date) => {
+      return date.toISOString().split("T")[0];
+    },
   };
 }

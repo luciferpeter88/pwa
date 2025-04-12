@@ -1,6 +1,9 @@
-const StatsCard = ({ icon, value, label }) => {
+import GoalEditModal from "../components/GoalMoadl";
+import { useState } from "react";
+const StatsCard = ({ icon, value, label, settings, type, setRender }) => {
+  const [show, setShow] = useState(false);
   return (
-    <article className="flex justify-center items-center px-9  bg-[#232828]  rounded-[30px] w-2/3">
+    <article className="flex justify-center items-center px-9  bg-[#232828]  rounded-[30px] w-2/3 relative">
       <div className="flex flex-col gap-3 items-center">
         <div className="flex justify-center items-center p-4 bg-stone-700 rounded-full  w-14 h-14">
           <img src={icon} alt={label} />
@@ -12,6 +15,20 @@ const StatsCard = ({ icon, value, label }) => {
           <p className="text-sm text-center text-[#f88415]">{label}</p>
         </div>
       </div>
+      {settings && (
+        <button
+          className="absolute right-4 bottom-3"
+          onClick={() => setShow(true)}
+        >
+          &#x2699;
+        </button>
+      )}
+      <GoalEditModal
+        show={show}
+        type={type}
+        onClose={() => setShow(false)}
+        setRender={setRender}
+      />
     </article>
   );
 };
