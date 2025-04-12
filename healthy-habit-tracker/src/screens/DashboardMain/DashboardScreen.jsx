@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import BrandHeader from "../../components/Header";
 import StatsCard from "../../components/StatsCard";
 import MetricCard from "../../components/MetricCard";
@@ -8,8 +8,24 @@ import glass from "../../assets/Glass.png";
 import steps from "../../assets/Step.png";
 import BottomNavigation from "../../components/BottomNavigation";
 import { getLoggedInUser } from "../../utils/auth";
+import { getTodayValue } from "../../utils/getTodayValue";
 
 const FitnessTracker = () => {
+  const [calories, setCalories] = useState(0);
+  const [water, setWater] = useState(0);
+  const [step, setStep] = useState(0);
+  useEffect(() => {
+    async function fetchCalories() {
+      const calorieValue = await getTodayValue("calories", "calories");
+      const waterValue = await getTodayValue("water", "water");
+      const stepValue = await getTodayValue("steps", "steps");
+      setWater(waterValue);
+      setStep(stepValue);
+      setCalories(calorieValue);
+    }
+
+    fetchCalories();
+  }, []);
   // get the logged in user
   const { user } = getLoggedInUser();
   return (
@@ -24,18 +40,18 @@ const FitnessTracker = () => {
             <div className="flex flex-col gap-3 w-full">
               <ProgressCard progress="Daily" />
               <div className="flex gap-3 w-full">
-                <StatsCard icon={fire} value="2,000" label="Kcal burnt" />
+                <StatsCard icon={fire} value={calories} label="Kcal burnt" />
                 <div className="flex flex-col gap-3 w-full">
                   <MetricCard
                     icon={glass}
-                    value="10"
+                    value={water}
                     label="Glass water"
                     bgColor="bg-[#232828]"
                     iconBgColor="bg-gray-700"
                   />
                   <MetricCard
                     icon={steps}
-                    value="5,000"
+                    value={step}
                     label="Step to walk"
                     bgColor="bg-[#232828]"
                     iconBgColor="bg-stone-700"

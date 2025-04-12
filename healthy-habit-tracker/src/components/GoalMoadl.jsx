@@ -4,7 +4,7 @@ import { getDailyGoal, setDailyGoal } from "../utils/goalService";
 
 const typeLabels = {
   calorie: "Calorie Goal (kcal)",
-  water: "Water Goal (ml)",
+  water: "Water Goal (glass)",
   step: "Step Goal",
 };
 

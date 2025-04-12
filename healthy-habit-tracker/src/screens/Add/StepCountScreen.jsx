@@ -21,7 +21,8 @@ function StepCountScreen() {
     if (isNaN(steps)) return;
     console.log(steps);
     // add the step entry to the database
-    addStepEntry(currentDate(), currentTime(), parseInt(steps));
+    // addStepEntry(currentDate(), currentTime(), parseInt(steps));
+    addStepEntry(currentDate(), parseInt(steps));
     navigate("/profile/steps");
   };
   return (

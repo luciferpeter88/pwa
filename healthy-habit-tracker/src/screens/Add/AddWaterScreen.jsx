@@ -12,7 +12,8 @@ function AddWaterScreen() {
 
   const handleSave = () => {
     if (!water || isNaN(water)) return;
-    addWaterEntry(date, time, parseInt(water));
+    // addWaterEntry(date, time, parseInt(water));
+    addWaterEntry(date, parseInt(water));
     navigate("/profile/water");
   };
 

@@ -15,7 +15,8 @@ function AddCalorieScreen() {
     // if the calorie input is empty retrn
     if (!kcal || isNaN(kcal)) return;
     // add the calorie entry to the database
-    addCalorieEntry(date, time, parseInt(kcal));
+    // addCalorieEntry(date, time, parseInt(kcal));
+    addCalorieEntry(date, parseInt(kcal));
     // navigate back to calorie tracker
     navigate("/profile");
   };
