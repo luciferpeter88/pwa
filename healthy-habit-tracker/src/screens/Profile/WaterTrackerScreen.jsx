@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -7,9 +7,11 @@ import {
   LineElement,
   Tooltip,
   Filler,
+  Legend,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
-import ProgressCard from "../../components/ProgressCard";
+import { getWeeklyHabitData } from "../../utils/getWeeklyHabitData";
+import { getDailyProgress } from "../../utils/getDailyProgress";
 
 ChartJS.register(
   CategoryScale,
@@ -17,26 +19,42 @@ ChartJS.register(
   PointElement,
   LineElement,
   Tooltip,
-  Filler
+  Filler,
+  Legend
 );
 
 function WaterTrackerPage() {
-  const [todayGlasses, setTodayGlasses] = useState(10);
+  const [todayGlasses, setTodayGlasses] = useState(0);
+  const [weeklyData, setWeeklyData] = useState([]);
+  const [chartLabels, setChartLabels] = useState([]);
 
-  const labels = ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"];
-  const dataValues = [8, 10, 9, 10, 7, 9, 11];
+  useEffect(() => {
+    async function fetchData() {
+      // Fetch weekly water intake data (an array of numbers for 7 days)
+      const weekly = await getWeeklyHabitData("water", "water");
+      // Fetch today's water progress (object with current, goal, percent)
+      const progress = await getDailyProgress("water");
+      // Update today's water intake
+      setTodayGlasses(progress.current);
+      // Update weekly data (if no data is found, it may remain an empty array)
+      setWeeklyData(weekly);
+      // Set the labels—for simplicity, a fixed order:
+      setChartLabels(["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]);
+    }
+    fetchData();
+  }, []);
 
   const chartData = {
-    labels,
+    labels: chartLabels,
     datasets: [
       {
         label: "Water Intake (Glass)",
-        data: dataValues,
+        data: weeklyData,
         fill: true,
         backgroundColor: "rgba(248, 132, 21, 0.1)",
         borderColor: "#f88415",
         tension: 0.4,
-        pointRadius: 0,
+        pointRadius: 4,
       },
     ],
   };
@@ -46,7 +64,8 @@ function WaterTrackerPage() {
     plugins: {
       tooltip: {
         callbacks: {
-          label: (context) => ` ${context.parsed.y} Glass`,
+          title: (tooltipItems) => `Day: ${tooltipItems[0].label}`, // Shows the day from the labels array.
+          label: (context) => `Water: ${context.parsed.y} Glass`,
         },
       },
       legend: {
@@ -60,32 +79,27 @@ function WaterTrackerPage() {
       },
       y: {
         beginAtZero: true,
-        ticks: {
-          stepSize: 2,
-          color: "#f1f1f1",
-        },
-        grid: {
-          color: "#2a2a2a",
-        },
+        ticks: { stepSize: 2, color: "#f1f1f1" },
+        grid: { color: "#2a2a2a" },
       },
     },
   };
 
   return (
     <div className="w-full">
-      <div className=" rounded-md mb-6 px-3">
+      <div className="rounded-md mb-6 px-3">
         <h2 className="text-[4vw] text-white">Total Drank</h2>
-        <p className="text-[8vw] font-bold text-[#f88415]">
+        <p className="text-[8vw] font-bold text-[#f88415] flex items-baseline">
           {todayGlasses} <span className="text-sm font-normal">glass</span>
         </p>
         <p className="text-sm text-white">Today</p>
       </div>
-
       <div className="w-full px-3">
-        <Line data={chartData} options={chartOptions} />
-      </div>
-      <div className="mt-5">
-        <ProgressCard />
+        {weeklyData.length === 0 ? (
+          <p className="text-gray-400">No data found for this week.</p>
+        ) : (
+          <Line data={chartData} options={chartOptions} />
+        )}
       </div>
     </div>
   );

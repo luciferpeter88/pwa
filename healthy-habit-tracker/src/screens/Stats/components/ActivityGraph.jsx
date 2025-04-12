@@ -9,7 +9,7 @@ Chart.register(annotationPlugin);
 function ActivityGraph() {
   const chartRef = useRef(null);
   const chartInstance = useRef(null);
-  const [selectedHabit, setSelectedHabit] = useState("steps");
+  const [selectedHabit, setSelectedHabit] = useState("calories");
   const [goalData, setGoalData] = useState(null);
   // dummy data for initial render
   const [habitGoals, setHabitGoals] = useState({
@@ -33,9 +33,6 @@ function ActivityGraph() {
     },
   });
 
-  // A shorthand for the currently selected habit configuration:
-  const currentHabit = habitGoals[selectedHabit];
-
   // Fetch new data when the selected habit changes.
   useEffect(() => {
     async function fetchData() {
@@ -57,8 +54,6 @@ function ActivityGraph() {
           data: weeklyData,
         },
       }));
-
-      console.log("Daily progress:", progress);
     }
     fetchData();
   }, [selectedHabit]);

@@ -6,61 +6,46 @@ import { getDailyProgress } from "../../../utils/getDailyProgress";
 
 Chart.register(annotationPlugin);
 
-function ActivityGraph() {
+function HabitChart({ habit, dummyData }) {
   const chartRef = useRef(null);
   const chartInstance = useRef(null);
-  // A szokás mostantól fixen "calories"
-  const selectedHabit = "calories";
-
   const [goalData, setGoalData] = useState(null);
-  // Csak a calories dummy adatok maradnak, mert csak erre dolgozunk
+
   const [habitGoals, setHabitGoals] = useState({
-    calories: {
-      label: "Calories",
-      goal: 1800,
-      data: [1500, 2000, 1750, 2800, 1600, 1900, 1700],
-      unit: "kcal",
-    },
+    [habit]: dummyData,
   });
 
-  // Fetcheljük a napi és heti kalória adatokat egyszer, mivel nincs váltás
   useEffect(() => {
     async function fetchData() {
-      // Lekérjük a napi progress adatot (például: { current, goal, percent }).
-      const progress = await getDailyProgress(selectedHabit);
-      // Lekérjük a heti adatokat (feltételezve, hogy egy 7 elemes tömböt ad vissza)
-      const weeklyData = await getWeeklyHabitData(selectedHabit, selectedHabit);
+      const progress = await getDailyProgress(habit);
 
-      // A headerben megjelenítendő célérték frissítése
+      const weeklyData = await getWeeklyHabitData(habit, habit);
+
       setGoalData(progress.goal);
 
-      // Csak a calories objektumot frissítjük az új adatokkal
       setHabitGoals({
-        [selectedHabit]: {
-          ...habitGoals[selectedHabit],
+        [habit]: {
+          ...dummyData,
           goal: progress.goal,
           data: weeklyData,
         },
       });
     }
     fetchData();
-    // Üres dependency array, mert a selectedHabit nem változik
-  }, []);
+  }, [habit, dummyData]);
 
-  // Létrehozzuk vagy frissítjük a diagramot, amikor a habitGoals frissül
   useEffect(() => {
     if (!chartRef.current) return;
     const ctx = chartRef.current.getContext("2d");
 
-    // Ha már létezik előző diagram, elpusztítjuk
     if (chartInstance.current) {
       chartInstance.current.destroy();
     }
 
-    const updatedHabit = habitGoals[selectedHabit];
+    const updatedHabit = habitGoals[habit];
 
     chartInstance.current = new Chart(ctx, {
-      type: "bar", // Itt a sávdiagram típust használjuk
+      type: "bar",
       data: {
         labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
         datasets: [
@@ -114,14 +99,13 @@ function ActivityGraph() {
         },
       },
     });
-  }, [habitGoals, selectedHabit]);
+  }, [habitGoals, habit]);
 
   return (
     <div className="mt-10 rounded-md shadow-md text-gray-100">
-      {/* A dropdown eltávolítva, mivel nincs váltás */}
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-[#f88415] text-sm font-semibold">
-          {habitGoals[selectedHabit].label} Progress (Goal: {goalData})
+          {habitGoals[habit].label} Progress (Goal: {goalData})
         </h2>
       </div>
       <canvas ref={chartRef} className="w-full h-64" />
@@ -129,4 +113,4 @@ function ActivityGraph() {
   );
 }
 
-export default ActivityGraph;
+export default HabitChart;
