@@ -9,11 +9,22 @@ import steps from "../../assets/Step.png";
 import BottomNavigation from "../../components/BottomNavigation";
 import { getLoggedInUser } from "../../utils/auth";
 import { getTodayValue } from "../../utils/getTodayValue";
+import { getDailyProgress } from "../../utils/getDailyProgress";
 
 const FitnessTracker = () => {
   const [calories, setCalories] = useState(0);
   const [water, setWater] = useState(0);
   const [step, setStep] = useState(0);
+  const [goal, setGoal] = useState({
+    calories: 0,
+    water: 0,
+    steps: 0,
+  });
+  const [progress, setProgress] = useState({
+    calories: 0,
+    water: 0,
+    steps: 0,
+  });
   useEffect(() => {
     async function fetchCalories() {
       const calorieValue = await getTodayValue("calories", "calories");
@@ -23,8 +34,30 @@ const FitnessTracker = () => {
       setStep(stepValue);
       setCalories(calorieValue);
     }
+    async function fetchProgress() {
+      const calorieProgress = await getDailyProgress("calories");
+      const waterProgress = await getDailyProgress("water");
+      const stepProgress = await getDailyProgress("steps");
+      setGoal((prev) => ({
+        ...prev,
+        calories: calorieProgress.goal,
+        water: waterProgress.goal,
+        steps: stepProgress.goal,
+      }));
+      setProgress((prev) => ({
+        ...prev,
+        calories: calorieProgress.percent,
+        water: waterProgress.percent,
+        steps: stepProgress.percent,
+      }));
+
+      console.log(calorieProgress);
+      console.log(waterProgress);
+      console.log(stepProgress);
+    }
 
     fetchCalories();
+    fetchProgress();
   }, []);
   // get the logged in user
   const { user } = getLoggedInUser();
@@ -38,7 +71,12 @@ const FitnessTracker = () => {
           </h1>
           <div className="flex flex-col gap-3 w-full mt-3  ">
             <div className="flex flex-col gap-3 w-full">
-              <ProgressCard progress="Daily" />
+              <ProgressCard
+                progress="Daily"
+                type="calorie"
+                goal={goal.calories}
+                precent={progress.calories}
+              />
               <div className="flex gap-3 w-full">
                 <StatsCard icon={fire} value={calories} label="Kcal burnt" />
                 <div className="flex flex-col gap-3 w-full">
@@ -59,7 +97,18 @@ const FitnessTracker = () => {
                 </div>
               </div>
             </div>
-            <ProgressCard />
+            <ProgressCard
+              progress="Daily"
+              goal={goal.water}
+              type="water"
+              precent={progress.water}
+            />
+            <ProgressCard
+              progress="Daily"
+              goal={goal.steps}
+              type="steps"
+              precent={progress.steps}
+            />
           </div>
         </main>
         <BottomNavigation />

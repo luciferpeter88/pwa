@@ -1,16 +1,23 @@
-const ProgressCard = ({ progress = "Weekly" }) => {
+const ProgressCard = ({ progress = "Weekly", goal, precent, type }) => {
   return (
-    <section className="flex relative flex-col gap-2 justify-center items-center px-5 py-7 w-full bg-[#232828] rounded-3xl">
+    <section className="flex relative flex-col gap-2 justify-center items-center px-5 py-5 w-full bg-[#232828] rounded-3xl">
       <div className="flex gap-5 justify-between items-center w-full">
         <div className="flex flex-col gap-2 items-start">
-          <h2 className="text-[5vw] font-bold text-white">
-            Your {progress} Progress
+          <h2 className="text-[4vw] font-medium text-white">
+            Your {progress}{" "}
+            <span className="font-bold text-[#f88415] capitalize">{type}</span>{" "}
+            Progress
           </h2>
-          <p className="text-sm text-indigo-100">Your {progress} report</p>
+          <p className="text-sm text-white">
+            Your Goal is set to{" "}
+            <span className="ml-2 text-[5vw] font-semibold text-[#f88415]">
+              {goal}
+            </span>{" "}
+          </p>
         </div>
         <div className="relative">
           <svg
-            className="w-[22vw] h-[22vw]"
+            className="w-[20vw] h-[20vw]"
             viewBox="0 0 98 98"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -32,7 +39,7 @@ const ProgressCard = ({ progress = "Weekly" }) => {
               letterSpacing="0em"
             >
               <tspan x="26.0889" y="59.275">
-                65
+                {precent}
               </tspan>
             </text>
             <text

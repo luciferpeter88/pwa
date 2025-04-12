@@ -20,9 +20,9 @@ function GoalEditModal({ show, type, onClose, setRender }) {
       // get the daily goal from the database using helper function based on userID
       getDailyGoal(userID).then((goal) => {
         if (goal) {
-          if (type === "calorie") setValue(goal.calorieGoal || "");
+          if (type === "calorie") setValue(goal.caloriesGoal || "");
           if (type === "water") setValue(goal.waterGoal || "");
-          if (type === "step") setValue(goal.stepGoal || "");
+          if (type === "step") setValue(goal.stepsGoal || "");
         }
       });
     }
@@ -31,14 +31,14 @@ function GoalEditModal({ show, type, onClose, setRender }) {
   const handleSave = async () => {
     const current = await getDailyGoal(userID);
     const updatedGoal = {
-      calorieGoal: current?.calorieGoal || 0,
+      calorieGoal: current?.caloriesGoal || 0,
       waterGoal: current?.waterGoal || 0,
-      stepGoal: current?.stepGoal || 0,
+      stepGoal: current?.stepsGoal || 0,
     };
 
-    if (type === "calorie") updatedGoal.calorieGoal = parseInt(value);
+    if (type === "calorie") updatedGoal.caloriesGoal = parseInt(value);
     if (type === "water") updatedGoal.waterGoal = parseInt(value);
-    if (type === "step") updatedGoal.stepGoal = parseInt(value);
+    if (type === "step") updatedGoal.stepsGoal = parseInt(value);
 
     await setDailyGoal(userID, new Date(), updatedGoal);
     setRender((prev) => !prev);
