@@ -15,7 +15,7 @@ function useCapturePicture() {
           videoRef.current.srcObject = stream;
           videoRef.current.play();
         }
-      }, 100);
+      }, 1000);
     } catch (err) {
       console.error("Camera access denied", err);
       alert("Camera permission is required to take a profile photo.");
@@ -31,7 +31,7 @@ function useCapturePicture() {
     const imageData = canvas.toDataURL("image/png");
     setImage(imageData);
     setShowCamera(false);
-
+    // console.log("Captured image data:", imageData);
     // TODO: Save imageData to IndexedDB later
   };
   return {
