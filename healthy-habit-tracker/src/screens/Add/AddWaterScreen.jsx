@@ -1,24 +1,19 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Vibration from "../../components/Vibration";
-
+import dateConversation from "../../utils/dateConvertion";
+import { addWaterEntry } from "../../utils/trackingService";
 function AddWaterScreen() {
   const navigate = useNavigate();
-  const [date, setDate] = useState(
-    () => new Date().toISOString().split("T")[0]
-  );
-  const [time, setTime] = useState(() =>
-    new Date().toLocaleTimeString("en-GB", {
-      hour: "2-digit",
-      minute: "2-digit",
-    })
-  );
-  const [glasses, setGlasses] = useState("");
+  const { currentDate, currentTime } = dateConversation();
+  const [date, setDate] = useState(currentDate);
+  const [time, setTime] = useState(currentTime);
+  const [water, setWater] = useState("");
 
   const handleSave = () => {
-    if (!glasses || isNaN(glasses)) return;
-    // Save to DB here (e.g., db.water.add(...))
-    navigate(-1);
+    if (!water || isNaN(water)) return;
+    addWaterEntry(date, time, parseInt(water));
+    navigate("/profile/water");
   };
 
   return (
@@ -66,8 +61,8 @@ function AddWaterScreen() {
           <label className="text-sm text-gray-400">Add Water:</label>
           <input
             type="number"
-            value={glasses}
-            onChange={(e) => setGlasses(e.target.value)}
+            value={water}
+            onChange={(e) => setWater(e.target.value)}
             inputMode="numeric"
             className="w-full bg-transparent border-b border-gray-600 text-white py-2 focus:outline-none"
             placeholder="Enter number of glasses"

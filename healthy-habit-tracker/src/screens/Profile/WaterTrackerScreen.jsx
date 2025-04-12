@@ -21,10 +21,10 @@ ChartJS.register(
 );
 
 function WaterTrackerPage() {
-  const [todayGlasses, setTodayGlasses] = useState(10); // Placeholder value
+  const [todayGlasses, setTodayGlasses] = useState(10);
 
   const labels = ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"];
-  const dataValues = [8, 10, 9, 10, 7, 9, 11]; // Placeholder data
+  const dataValues = [8, 10, 9, 10, 7, 9, 11];
 
   const chartData = {
     labels,

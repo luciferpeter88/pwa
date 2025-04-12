@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
 import { useNavigate } from "react-router-dom";
 import Vibration from "../../components/Vibration";
@@ -6,13 +6,24 @@ import UpdatePosition from "./components/UpdatePosition";
 import useGeolocation from "../../hooks/useGeolocation";
 import useDeviceMotion from "../../hooks/useDeviceMotion";
 import useDeviceOrientation from "../../hooks/useDeviceOrientation";
+import dateConversation from "../../utils/dateConvertion";
+
+import { addStepEntry } from "../../utils/trackingService";
 
 function StepCountScreen() {
+  const { currentDate, currentTime } = dateConversation();
   const navigate = useNavigate();
   const position = useGeolocation();
+  // useDeviceMotion to get the step count
   const steps = useDeviceMotion();
   const heading = useDeviceOrientation();
-
+  const handleSave = () => {
+    if (isNaN(steps)) return;
+    console.log(steps);
+    // add the step entry to the database
+    addStepEntry(currentDate(), currentTime(), parseInt(steps));
+    navigate("/profile/steps");
+  };
   return (
     <div className="bg-[#141919] min-h-screen text-white p-4">
       <div className="flex items-center justify-between mb-6 mt-5">
@@ -20,6 +31,12 @@ function StepCountScreen() {
           ←
         </Vibration>
         <h2 className="text-md font-semibold">Step Tracker</h2>
+        <Vibration
+          className="text-sm text-[#f88415] font-medium"
+          onClick={handleSave}
+        >
+          Save
+        </Vibration>
       </div>
 
       <p className="mb-2">
