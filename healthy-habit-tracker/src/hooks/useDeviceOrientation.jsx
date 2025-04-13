@@ -5,7 +5,7 @@ function useDeviceOrientation() {
 
   useEffect(() => {
     const orientationHandler = (event) => {
-      setHeading(event.alpha); // 0–360 fok (0 = észak)
+      setHeading(event.alpha);
     };
 
     window.addEventListener("deviceorientation", orientationHandler);
