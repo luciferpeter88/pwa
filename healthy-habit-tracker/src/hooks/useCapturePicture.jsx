@@ -7,7 +7,21 @@ function useCapturePicture() {
   const canvasRef = useRef(null);
 
   const openCamera = async () => {
+    console.log(navigator);
     try {
+      if (navigator.permissions) {
+        // Check if the camera permission is denied
+        // If the permission is denied, show an alert and return
+        const permissionStatus = await navigator.permissions.query({
+          name: "camera",
+        });
+        if (permissionStatus.state === "denied") {
+          alert(
+            "Camera permission is denied. Please allow camera access in your browser settings."
+          );
+          return;
+        }
+      }
       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
       setShowCamera(true);
       setTimeout(() => {
@@ -31,8 +45,6 @@ function useCapturePicture() {
     const imageData = canvas.toDataURL("image/png");
     setImage(imageData);
     setShowCamera(false);
-    // console.log("Captured image data:", imageData);
-    // TODO: Save imageData to IndexedDB later
   };
   return {
     image,
