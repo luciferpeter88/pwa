@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Dashboard from "./screens/Dashboard";
 import DashboardScreen from "./screens/DashboardMain/DashboardScreen";
 import DashboardStatsScreen from "./screens/Stats/DashboardStatsScreen";
 import ProfileDashboardScreen from "./screens/Profile/ProfileDashboardScreen";
