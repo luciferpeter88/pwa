@@ -37,8 +37,7 @@ function DailyGoals() {
       </div>
       <div className="flex flex-col gap-3 w-full mt-3  ">
         <div className="flex flex-col gap-3 w-full">
-          <ProgressCard />
-          <div className="flex gap-3 w-full">
+          <div className="flex gap-3 w-full mt-10">
             <StatsCard
               icon={fire}
               value={value?.calorieGoal || 0}

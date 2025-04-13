@@ -4,11 +4,11 @@ const ProgressCard = ({ progress = "Weekly", goal, precent, type }) => {
       <div className="flex gap-5 justify-between items-center w-full">
         <div className="flex flex-col gap-2 items-start">
           <h2 className="text-[4vw] font-medium text-white">
-            Your {progress}{" "}
+            Completed {progress}{" "}
             <span className="font-bold text-[#f88415] capitalize">{type}</span>{" "}
           </h2>
           <p className="text-sm text-white">
-            Progress is set to{" "}
+            Goal is set to{" "}
             <span className="ml-2 text-[5vw] font-semibold text-[#f88415]">
               {goal}
             </span>{" "}
