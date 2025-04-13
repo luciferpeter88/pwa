@@ -15,7 +15,7 @@ export async function getWeeklyHabitData(table, field) {
   // loop through the last 7 days backwards because we want to get the last 7 days from today
   for (let i = 6; i >= 0; i--) {
     const day = new Date();
-    day.setDate(today.getDate() - i + 1);
+    day.setDate(today.getDate() - i);
     // put into the array in the format YYYY-MM-DD
     days.push(formatDate(day));
   }
