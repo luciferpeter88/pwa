@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
 import { useNavigate } from "react-router-dom";
 import Vibration from "../../components/Vibration";
@@ -7,11 +7,11 @@ import useGeolocation from "../../hooks/useGeolocation";
 import useDeviceMotion from "../../hooks/useDeviceMotion";
 import useDeviceOrientation from "../../hooks/useDeviceOrientation";
 import dateConversation from "../../utils/dateConvertion";
-
 import { addStepEntry } from "../../utils/trackingService";
+import { deleteTodaysData } from "../../utils/deleteTodayData";
 
 function StepCountScreen() {
-  const { currentDate, currentTime } = dateConversation();
+  const { currentDate } = dateConversation();
   const navigate = useNavigate();
   const position = useGeolocation();
   // useDeviceMotion to get the step count
@@ -67,6 +67,12 @@ function StepCountScreen() {
           </MapContainer>
         )}
       </div>
+      <button
+        className="mt-6 bg-[#f88415] text-bwhite px-6 py-2 rounded-md font-medium hover:opacity-90"
+        onClick={() => deleteTodaysData("steps")}
+      >
+        Delete Today's Data
+      </button>
     </div>
   );
 }

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Vibration from "../../components/Vibration";
 import dateConversation from "../../utils/dateConvertion";
 import { addWaterEntry } from "../../utils/trackingService";
+import { deleteTodaysData } from "../../utils/deleteTodayData";
 function AddWaterScreen() {
   const navigate = useNavigate();
   const { currentDate, currentTime } = dateConversation();
@@ -70,6 +71,12 @@ function AddWaterScreen() {
           />
         </div>
       </div>
+      <button
+        className="mt-6 bg-[#f88415] text-white px-6 py-2 rounded-md font-medium hover:opacity-90"
+        onClick={() => deleteTodaysData("water")}
+      >
+        Delete Today's Data
+      </button>
     </div>
   );
 }
