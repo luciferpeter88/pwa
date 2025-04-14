@@ -68,11 +68,11 @@ To run the application locally for development, follow these steps:
 
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/luciferpeter88/pwa.git](https://github.com/luciferpeter88/pwa.git)
+    git clone https://github.com/luciferpeter88/pwa.git
     ```
 2.  **Navigate to the project directory:**
     ```bash
-    cd pwa
+    cd healthy-habbit-tracker
     ```
 3.  **Install dependencies:**
     ```bash
@@ -88,7 +88,7 @@ To run the application locally for development, follow these steps:
 
 ### PWA Installation
 
-1.  **Visit the Website:** Open a compatible web browser on your phone or desktop and go to the application URL: https://habbit-tracker-zeta.vercel.app/
+1.  **Visit the Website:** Open a web browser on your phone and go to the application URL: https://habbit-tracker-zeta.vercel.app/
 2.  **Install Prompt:** Your browser may automatically offer an option to install the app or add it to your home screen (via a pop-up or address bar icon).
 3.  **Confirm Installation:** Follow the browser's prompt to install the PWA. **The app will then be added to your device like a native application, available to launch directly from your home screen or app list.**
 
@@ -198,10 +198,10 @@ The application uses IndexedDB (via the Dexie.js library) for client-side data s
 
 ## Hardware API Usage
 
-The application utilizes the following device hardware APIs:
+The application uses the following device hardware APIs:
 
 - **Camera API:** Used to capture user profile photos.
-- **Microphone API (SpeechRecognition):** Used to enable voice-based text input.
+- **Microphone API :** Used to enable voice-based text input.
 - **Geolocation API:** Used to access the user's location, potentially for step tracking or other location-based features.
 - **Vibration API:** Used to provide haptic feedback to the user for certain actions or events.
 - **Device Motion API:** Used to detect device movement, primarily for step tracking functionality.
