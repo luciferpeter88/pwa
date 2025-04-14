@@ -35,7 +35,6 @@ function useCapturePicture() {
       alert("Camera permission is required to take a profile photo.");
     }
   };
-
   const capturePhoto = () => {
     const canvas = canvasRef.current;
     const video = videoRef.current;

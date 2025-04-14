@@ -4,11 +4,9 @@ function useSpeechToText() {
   const [transcript, setTranscript] = useState("");
   const [isListening, setIsListening] = useState(false);
   const recognitionRef = useRef(null);
-
   // Check if the browser supports SpeechRecognition
   const isSupported =
     "SpeechRecognition" in window || "webkitSpeechRecognition" in window;
-
   const startListening = () => {
     if (!isSupported) {
       alert("Speech recognition is not supported in your browser.");
@@ -40,7 +38,6 @@ function useSpeechToText() {
 
     recognition.start();
   };
-
   return {
     transcript,
     setTranscript,
