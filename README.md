@@ -180,11 +180,11 @@ Once installed (or when using the app directly in the browser):
 
 The project source code (`src/`) is organized as follows:
 
-- **`src/components/`**: Contains global, reusable UI components used across multiple screens (e.g., navigation bars, buttons).
-- **`src/hooks/`**: Contains custom React hooks encapsulating reusable logic (e.g., `useCapturePicture`, `useDeviceMotion`, `useSpeechToText`).
-- **`src/screens/`**: Contains components representing distinct application screens or pages. Each screen typically resides in its own subfolder, which may also contain a nested `components/` folder for UI elements specific only to that screen.
-- **`src/utils/`**: Contains utility functions, helper scripts, and configuration files that are not React components (e.g., `db.js` for Dexie setup, `auth.js`).
-- **`src/assets/`**: Contains static assets like images, icons, etc. (Note: This folder might be outside `src` depending on setup, e.g., in `public/`).
+- **`src/components/`**: Contains global, reusable UI components used across multiple screens.
+- **`src/hooks/`**: Contains custom React hooks encapsulating reusable logic.
+- **`src/screens/`**: Contains components representing distinct application screens. Each screen typically resides in its own subfolder, which may also contain a nested `components/` folder for UI elements specific only to that screen.
+- **`src/utils/`**: Contains utility functions, helper scripts, and configuration files that are not React components.
+- **`src/assets/`**: Contains static assets like images, icons, etc.
 
 ## Database Schema
 
