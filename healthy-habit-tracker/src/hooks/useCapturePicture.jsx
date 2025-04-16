@@ -44,7 +44,14 @@ function useCapturePicture() {
     const imageData = canvas.toDataURL("image/png");
     setImage(imageData);
     setShowCamera(false);
+    // stop the video stream
+    if (video.srcObject) {
+      const tracks = video.srcObject.getTracks();
+      tracks.forEach((track) => track.stop());
+      video.srcObject = null; // stopt the steram
+    }
   };
+
   return {
     image,
     showCamera,
