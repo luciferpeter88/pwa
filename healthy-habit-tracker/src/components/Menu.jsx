@@ -35,15 +35,14 @@ function Menu({ setIsMenuOpen }) {
           </button>
         ))}
       </div>
-      <Link to="/">
-        <button
-          onClick={handleLogout}
-          className="mt-auto mb-3 text-[5vw] text-red-600 hover:text-red-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 rounded-md px-4 py-2 transition-colors"
-          aria-label="Log out of your account"
-        >
-          Log Out
-        </button>
-      </Link>
+
+      <button
+        onClick={handleLogout}
+        className="mt-auto mb-3 text-[5vw] text-red-600 hover:text-red-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 rounded-md px-4 py-2 transition-colors"
+        aria-label="Log out of your account"
+      >
+        Log Out
+      </button>
     </nav>
   );
 }
