@@ -6,9 +6,7 @@ function Menu({ setIsMenuOpen }) {
     { text: "Daily Goals", route: "/daily-goals" },
     { text: "Settings", route: "/settings" },
   ];
-  const handleLogout = () => {
-    console.log("Logging out...");
-  };
+  const handleLogout = () => {};
   return (
     <nav className="flex overflow-hidden w-full flex-col items-center mx-auto w-full text-[5vw] font-medium leading-none text-center text-white bg-[#232828] h-screen fixed top-0 left-0 z-50">
       <svg
@@ -37,13 +35,15 @@ function Menu({ setIsMenuOpen }) {
           </button>
         ))}
       </div>
-      <button
-        onClick={handleLogout}
-        className="mt-auto mb-3 text-[5vw] text-red-600 hover:text-red-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 rounded-md px-4 py-2 transition-colors"
-        aria-label="Log out of your account"
-      >
-        Log Out
-      </button>
+      <Link to="/">
+        <button
+          onClick={handleLogout}
+          className="mt-auto mb-3 text-[5vw] text-red-600 hover:text-red-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 rounded-md px-4 py-2 transition-colors"
+          aria-label="Log out of your account"
+        >
+          Log Out
+        </button>
+      </Link>
     </nav>
   );
 }
