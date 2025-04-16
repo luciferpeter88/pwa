@@ -80,7 +80,11 @@ export function Register() {
 
       <p className="text-sm text-gray-400 mb-5">
         Already have an account?{" "}
-        <button type="submit" className="text-[#f88415]">
+        <button
+          type="submit"
+          className="text-[#f88415]"
+          onClick={() => navigate("/")}
+        >
           Log in
         </button>
       </p>
