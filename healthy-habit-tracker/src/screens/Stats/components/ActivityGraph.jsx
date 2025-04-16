@@ -119,7 +119,7 @@ function ActivityGraph() {
   }, [habitGoals, selectedHabit]);
 
   return (
-    <div className="mt-10 rounded-md shadow-md text-gray-100 p-4 bg-[#141919]">
+    <div className="mt-10 rounded-md shadow-md text-gray-100 p-4 bg-transparent">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-[#f88415] text-sm font-semibold">
           {habitGoals[selectedHabit].label} Progress (Goal: {goalValue})
