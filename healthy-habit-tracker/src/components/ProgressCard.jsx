@@ -1,6 +1,6 @@
 const ProgressCard = ({ progress = "Weekly", goal, precent, type }) => {
   return (
-    <section className="flex relative flex-col gap-2 justify-center items-center px-5 py-5 w-full bg-[#232828] rounded-3xl">
+    <section className="flex relative flex-col gap-2 justify-center items-center px-5 py-5 w-full bg-[#232828] rounded-3xl bg-white/5  border border-white/10 shadow-md hover:shadow-xl transition-all">
       <div className="flex gap-5 justify-between items-center w-full">
         <div className="flex flex-col gap-2 items-start">
           <h2 className="text-[4vw] font-medium text-white">

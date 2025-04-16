@@ -10,7 +10,7 @@ export default function BottomNavigation() {
   const statsPath = pathname.includes("/stats") ? "#f88415" : "#6C736F";
 
   return (
-    <nav className="flex gap-16 justify-center items-center  mt-auto w-full bg-[#232828] h-[17.5vw]">
+    <nav className="flex gap-16 justify-center items-center  mt-auto w-full bg-[#232828] h-[17.5vw] bg-white/5 shadow-md hover:shadow-xl transition-all">
       <Link to="/dashboard">
         <button>
           <svg

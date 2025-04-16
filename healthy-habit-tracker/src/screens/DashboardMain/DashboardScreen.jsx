@@ -59,13 +59,17 @@ const FitnessTracker = () => {
   const { user } = getLoggedInUser();
   return (
     <React.Fragment>
-      <div className="min-h-screen flex flex-col bg-[#141919]">
-        <main className="flex flex-col items-center justify-center px-3 bg-[#141919] h-full mb-3">
+      <div className="min-h-screen flex flex-col  bg-gradient-to-br from-[#141919] via-[#1c1f1f] to-[#101111] relative">
+        {/* <div className="absolute top-1/3 left-2/ w-96 h-96 bg-[#00ffcc]/10 rounded-full blur-3xl -translate-x-1/2"></div> */}
+
+        <main className="flex flex-col items-center justify-center px-3 relative bg-gradient-to-br from-[#141919] via-[#1c1f1f] to-[#101111] mb-3 overflow-hidden">
+          <div className="absolute top-1/3 left-1/2 w-96 h-96 bg-[#00ffcc]/10 rounded-full blur-3xl -translate-x-1/2"></div>
+
           <BrandHeader />
           <h1 className="text-white text-[6vw] font-semi-bold">
             Hi {user?.name}
           </h1>
-          <div className="flex flex-col gap-3 w-full mt-3  ">
+          <div className="flex flex-col gap-3 w-full mt-3">
             <div className="flex flex-col gap-3 w-full">
               <ProgressCard
                 progress="Daily"
