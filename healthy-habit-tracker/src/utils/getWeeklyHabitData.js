@@ -1,32 +1,34 @@
 import { db } from "./db";
 import { getLoggedInUser } from "./auth";
 import dateConversation from "./dateConvertion";
-
-const { formatDate, currentDate } = dateConversation();
+const { formatDate } = dateConversation();
 
 export async function getWeeklyHabitData(table, field) {
-  console.log("current date", currentDate());
   const { userID } = getLoggedInUser();
-  if (!userID) return [];
-  // get the current date
+  if (!userID) return Array(7).fill(0);
+
+  //  Számoljuk ki a hétfő dátumát:
   const today = new Date();
-  const days = [];
-  console.log("today", today);
-  // loop through the last 7 days backwards because we want to get the last 7 days from today
-  for (let i = 6; i >= 0; i--) {
-    const day = new Date();
-    day.setDate(today.getDate() - i);
-    // put into the array in the format YYYY-MM-DD
-    days.push(formatDate(day));
-  }
-  // get the table based on the table name
+  const dayOfWeek = (today.getDay() + 6) % 7; // Mon=0, …, Sun=6
+  const monday = new Date(today);
+  monday.setDate(today.getDate() - dayOfWeek);
+
+  //  Hétfőtől vasárnapig építjük a dátum-tömböt:
+  const weekDates = Array.from({ length: 7 }, (_, i) => {
+    const d = new Date(monday);
+    d.setDate(monday.getDate() + i);
+    return formatDate(d);
+  });
+
+  // Lekérjük az adott tábla bejegyzéseit a hét napjaira
   const entries = await db[table]
     .where("userID")
     .equals(userID)
-    .and((entry) => days.includes(entry.date))
+    .and((entry) => weekDates.includes(entry.date))
     .toArray();
-  // create an array of objects with the date and the field value
-  return days.map((date) => {
+
+  //  Map-elünk: minden naphoz vagy bejegyzés, vagy 0
+  return weekDates.map((date) => {
     const entry = entries.find((e) => e.date === date);
     return entry?.[field] || 0;
   });
