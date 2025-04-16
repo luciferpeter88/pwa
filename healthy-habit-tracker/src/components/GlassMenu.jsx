@@ -34,7 +34,7 @@ function FloatingGlassMenu() {
 
 function GlassMenu() {
   return (
-    <div className="fixed h-screen top-0 left-0 right-0 flex justify-center p-4 backdrop-blur bg-white/10 ">
+    <div className="fixed h-screen top-0 left-0 right-0 flex justify-center p-4 backdrop-blur bg-white/10 z-20">
       <FloatingGlassMenu />
     </div>
   );
