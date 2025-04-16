@@ -52,7 +52,7 @@ function StepCountScreen() {
         </p>
       )}
 
-      <div className="h-[60vh] rounded-md overflow-hidden border border-[#333]">
+      <div className="h-[60vh] rounded-md overflow-hidden border border-[#333] z-10">
         {position && (
           <MapContainer
             center={[position.lat, position.lon]}
