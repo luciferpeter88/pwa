@@ -93,7 +93,7 @@ function ProfilePage() {
       <div className="relative">
         <img
           key={userd.pictureSrc} // Friss rendereléshez
-          src={userd.pictureSrc || "https://via.placeholder.com/150"}
+          src={userd.pictureSrc}
           alt="profile"
           className="w-28 h-28 rounded-full object-cover border border-gray-600"
         />
