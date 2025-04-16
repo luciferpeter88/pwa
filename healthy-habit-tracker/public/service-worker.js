@@ -1,5 +1,5 @@
 const CACHE_NAME = "my-basic-cache-v1";
-const urlsToCache = ["../src/app.css"];
+const urlsToCache = ["/"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
