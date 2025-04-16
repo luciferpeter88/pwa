@@ -1,5 +1,5 @@
 const CACHE_NAME = "my-basic-cache-v1";
-const urlsToCache = ["/"];
+const urlsToCache = ["/", "/registration"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
