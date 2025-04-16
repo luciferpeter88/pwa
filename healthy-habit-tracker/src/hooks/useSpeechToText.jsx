@@ -8,7 +8,7 @@ function useSpeechToText() {
   const isSupported =
     "SpeechRecognition" in window || "webkitSpeechRecognition" in window;
   const startListening = () => {
-    if (!isSupported) {
+    if (!isSupported || !("mediaDevices" in navigator)) {
       alert("Speech recognition is not supported in your browser.");
       return;
     }
