@@ -15,6 +15,7 @@
 - [Database Schema](#database-schema)
 - [Hardware API Usage](#hardware-api-usage)
 - [Routing](#routing)
+- [Service Worker Implementation](#service-worker-implementation)
 - [Screenshots](#screenshots)
 - [License](#license)
 - [Author](#author)
@@ -71,9 +72,11 @@ To run the application locally for development, follow these steps:
     git clone https://github.com/luciferpeter88/pwa.git
     ```
 2.  **Navigate to the project directory:**
+
     ```bash
-    cd healthy-habbit-tracker
+    cd pwa/healthy-habbit-tracker
     ```
+
 3.  **Install dependencies:**
     ```bash
     npm install
@@ -210,6 +213,60 @@ The application uses the following device hardware APIs:
 ## Routing
 
 The application uses React Router (`react-router-dom`) for navigation. The main routing structure is defined using a `<Router>` component, with individual routes defined within a `<Routes>` component. Each `<Route>` maps a specific URL path to a corresponding screen component. Some routes are organized within a layout component (like the /profile route), sharing common UI elements.
+
+## Service Worker Implementation
+
+The application uses a Service Worker to improve loading speed through a basic caching strategy.
+
+- **File Location:** The Service Worker logic resides in the `public/service-worker.js` file.
+- **Registration:** The Service Worker is registered in the `src/main.jsx` file. When the application loads (`window.addEventListener("load", ...)`), it checks if the browser supports Service Workers (`"serviceWorker" in navigator`) and then attempts to register the `/service-worker.js` file using `navigator.serviceWorker.register()`. Messages about successful or failed registration are logged to the console.
+
+### Caching Strategy:
+
+1.  **Installation (`install` event):** When the Service Worker is first installed, it opens a cache named `my-basic-cache-v1`. It pre-caches the project's root URL (`/`) into this cache, which represents the main entry point of the application.
+
+    ```javascript
+    // service-worker.js - Snippet
+    const CACHE_NAME = "my-basic-cache-v1";
+    const urlsToCache = ["/"]; // Caching only the index URL
+
+    self.addEventListener("install", (event) => {
+      event.waitUntil(
+        caches.open(CACHE_NAME).then((cache) => {
+          console.log("Cache is opened", CACHE_NAME);
+          return cache.addAll(urlsToCache);
+        })
+      );
+    });
+    ```
+
+2.  **Request Handling (`Workspace` event):** Once the Service Worker is active, it intercepts all network requests made by the application. It first tries to serve the requested resource from the cache using `caches.match(event.request)`.
+    - If a matching response is found in the cache, it's returned without internet connection.
+    - If the request is not found in the cache, the Service Worker forwards the request to the network using `Workspace(event.request)`.
+    ```javascript
+    // service-worker.js - Snippet
+    self.addEventListener("fetch", (event) => {
+      event.respondWith(
+        caches.match(event.request).then((response) => {
+          // If it's in the cache, return it, otherwise make a network request.
+          return response || fetch(event.request);
+        })
+      );
+    });
+    ```
+
+## Screenshots
+
+1.  **Registration Screen** - `./healthy-habit-tracker/Screenshots/registration.png`
+2.  **Login Screen** - `./healthy-habit-tracker/Screenshots/login.png`
+3.  **Dashboard – Overview Screen** - `./healthy-habit-tracker/Screenshots/dashboardMain.png`
+4.  **Profile – Detailed Weekly History** - `./healthy-habit-tracker/Screenshots/profile-Kcal.png`
+5.  **Statistics – Total Progress and Weekly Charts** - `./healthy-habit-tracker/Screenshots/static1.png`
+6.  **Step Tracker – GPS Map View** - `./healthy-habit-tracker/Screenshots/stepTracker.png`
+7.  **Edit Profile Page** - `./healthy-habit-tracker/Screenshots/profile.png`
+8.  **Add Kcal Page** - `./healthy-habit-tracker/Screenshots/addKcal.png`
+9.  **Daily Goal Settings Page** - `./healthy-habit-tracker/Screenshots/daily-goal.png`
+10. **Goal Setting Modal** - `./healthy-habit-tracker/Screenshots/setCalories.png`
 
 ## License
 
