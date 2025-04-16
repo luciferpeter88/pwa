@@ -26,14 +26,15 @@ function StepCountScreen() {
     navigate("/profile/steps");
   };
   return (
-    <div className="bg-[#141919] min-h-screen text-white p-4">
+    <div className="bg-gradient-to-br from-[#141919] via-[#1c1f1f] to-[#101111] relative min-h-screen text-white p-4 flex flex-col">
+      <div className="absolute top-1/3 left-1/2 w-96 h-96 bg-[#00ffcc]/10 rounded-full blur-3xl -translate-x-1/2"></div>
       <div className="flex items-center justify-between mb-6 mt-5">
         <Vibration onClick={() => navigate(-1)} className="text-xl">
           ←
         </Vibration>
         <h2 className="text-md font-semibold">Step Tracker</h2>
         <Vibration
-          className="text-sm text-[#f88415] font-medium"
+          className="text-sm text-[#f88415] font-medium bg-[#232828] px-4 py-2 rounded-md"
           onClick={handleSave}
         >
           Save
@@ -68,7 +69,7 @@ function StepCountScreen() {
         )}
       </div>
       <button
-        className="mt-6 bg-[#f88415] text-bwhite px-6 py-2 rounded-md font-medium hover:opacity-90"
+        className="mt-6 bg-[#f88415] text-bwhite px-6 py-2 rounded-md font-medium hover:opacity-90 z-10"
         onClick={() => deleteTodaysData("steps")}
       >
         Delete Today's Data
